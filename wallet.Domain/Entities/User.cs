@@ -16,7 +16,7 @@ namespace wallet.Domain.Entities
         public string UserRole { get; set; }
         public int CompanyID { get; set; }
         public Company Company { get; set; }
-        public IEnumerable<Wallet> Wallets { get; set; }
+        public IEnumerable<WalletE> Wallets { get; set; }
         public IEnumerable<Notification> Notifications { get; set; }
     }
 }

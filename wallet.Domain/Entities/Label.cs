@@ -12,7 +12,7 @@ namespace wallet.Domain.Entities
         public float DesiredAmount { get; set; }
         public float CurrentAmount { get; set; }
         public IEnumerable<Transaction> Transactions { get; set; }
-        public Wallet Wallet { get; set; }
+        public WalletE Wallet { get; set; }
 
     }
 }

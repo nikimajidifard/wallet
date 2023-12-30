@@ -9,7 +9,7 @@ using wallet.Domain.Enums;
 
 namespace wallet.Domain.Entities
 {
-    public class Wallet
+    public class WalletE
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int WalletId { get; set; }

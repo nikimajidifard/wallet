@@ -16,7 +16,7 @@ namespace wallet.Domain.Entities
         public DateTime TransactionTime { get; set; }
         public float TransactionValue { get; set; }
         public int WalletId { get; set; }
-        public Wallet Wallet { get; set; }
+        public WalletE Wallet { get; set; }
         public Notification Notification { get; set; }
         public Label Label { get; set; }
     }

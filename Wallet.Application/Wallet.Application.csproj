@@ -13,6 +13,10 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\wallet.Domain\wallet.Domain.csproj" />
+  </ItemGroup>
+
 
 
 </Project>
