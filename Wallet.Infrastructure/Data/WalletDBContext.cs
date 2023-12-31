@@ -21,8 +21,5 @@ namespace Wallet.Infrastructure.Data
         public DbSet<EmailNotification> EmailNotifications { get; set; }
         public DbSet<Label> Labels { get; set; }
 
-
-
-
     }
 }

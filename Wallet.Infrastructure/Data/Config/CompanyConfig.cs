@@ -15,9 +15,9 @@ namespace Wallet.Infrastructure.Data.Config
         {
             builder.ToTable("Company");
             builder.HasKey(x => x.CompanyId);
-            builder.Property(x => x.CompanyName).HasMaxLength(50);
+            builder.Property(x => x.CompanyName).HasMaxLength(100);
             builder.Property(x => x.CompanyLocation).HasMaxLength(150);
-            builder.Property(x => x.CompinyNo).HasMaxLength(20);
+            builder.Property(x => x.CompanyNo).HasMaxLength(20);
             builder.Property(x => x.CompanyRate).HasDefaultValue(0);
         }
     }

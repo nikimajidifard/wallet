@@ -8,7 +8,8 @@ namespace Wallet.Application.DTOs
 {
     public class LabelDto
     {
-        public string Name { get; set; }
+        public int LabelId { get; set; }
+        public string LabelName { get; set; }
         public float DesiredAmount { get; set; }
         public float CurrentAmount { get; set; }
     }

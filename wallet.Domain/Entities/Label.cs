@@ -8,7 +8,8 @@ namespace wallet.Domain.Entities
 {
     public class Label
     {
-        public string Name { get; set; }
+        public int LabelId { get; set; }
+        public string LabelName { get; set; }
         public float DesiredAmount { get; set; }
         public float CurrentAmount { get; set; }
         public IEnumerable<Transaction> Transactions { get; set; }
