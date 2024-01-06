@@ -10,13 +10,13 @@ namespace Wallet.Application.Contracts
 {
     public interface IWallet
     {
-        string CreateWallet(WalletEDto wallet, int UserId);
-        string UpdateWallet(WalletEDto wallet,float NewBalance, int UserId);
-        string DeleteWallet(WalletEDto wallet, int UserId);
+        string CreateWallet(WalletEDto wallet, int userId);
+        string UpdateWallet(WalletEDto wallet,float newBalance, int userId);
+        string DeleteWallet(WalletEDto wallet, int userId);
         List<WalletEDto> GetWallets();
-        WalletEDto GetWallet(int UserId);
-        float GetBalance(int WalletId);
-        List<LabelDto> Labels(int WalletId);
+        WalletEDto GetWallet(int userId);
+        float GetBalance(int walletId);
+        List<LabelDto> Labels(int walletId);
 
     }
 }
