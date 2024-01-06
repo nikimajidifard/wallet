@@ -1,0 +1,5 @@
+E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.csproj.AssemblyReference.cache
+E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.AssemblyInfoInputs.cache
+E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.AssemblyInfo.cs
+E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.csproj.CoreCompileInputs.cache

@@ -1061,14 +1061,14 @@
           }
         }
       },
-      "wallet.Domain/1.0.0": {
+      "Wallet.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/wallet.Domain.dll": {}
+          "bin/placeholder/Wallet.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/wallet.Domain.dll": {}
+          "bin/placeholder/Wallet.Domain.dll": {}
         }
       }
     }
@@ -2893,10 +2893,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "wallet.Domain/1.0.0": {
+    "Wallet.Domain/1.0.0": {
       "type": "project",
-      "path": "../wallet.Domain/wallet.Domain.csproj",
-      "msbuildProject": "../wallet.Domain/wallet.Domain.csproj"
+      "path": "../Wallet.Domain/Wallet.Domain.csproj",
+      "msbuildProject": "../Wallet.Domain/Wallet.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2907,7 +2907,7 @@
       "Microsoft.EntityFrameworkCore.Relational >= 7.0.14",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.14",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.14",
-      "wallet.Domain >= 1.0.0"
+      "Wallet.Domain >= 1.0.0"
     ]
   },
   "packageFolders": {

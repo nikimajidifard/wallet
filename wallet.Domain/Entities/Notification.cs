@@ -13,9 +13,6 @@ namespace wallet.Domain.Entities
         public DateTime NotificationDate { get; set; }
         public NotificationType NotificationType{ get; set; }
         public Transaction Transaction { get; set; }
-
-
-
     }
     public class SMSNotification: Notification
     {

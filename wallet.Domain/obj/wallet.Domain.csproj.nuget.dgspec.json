@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\wallet\\wallet.Domain\\wallet.Domain.csproj": {}
+    "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj": {}
   },
   "projects": {
-    "E:\\wallet\\wallet.Domain\\wallet.Domain.csproj": {
+    "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\wallet\\wallet.Domain\\wallet.Domain.csproj",
-        "projectName": "wallet.Domain",
-        "projectPath": "E:\\wallet\\wallet.Domain\\wallet.Domain.csproj",
+        "projectUniqueName": "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj",
+        "projectName": "Wallet.Domain",
+        "projectPath": "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj",
         "packagesPath": "C:\\Users\\abc\\.nuget\\packages\\",
-        "outputPath": "E:\\wallet\\wallet.Domain\\obj\\",
+        "outputPath": "E:\\wallet\\Wallet.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "agSQOoE8whXb5pTopaLO8pBgO/mKkrwxH9A8c8OPNBQJBILmgP8e1y9pOBNqJOlB6k6ScQbm6B3wF6EATeOmow==",
+  "dgSpecHash": "cBRV6CAdURt+MFHyoLBMpFex5mV4UWK1iIslrZpfOjMLooGUliOFfyD0kWSbu2d1YfWWQIWW7JbPMHcPgak3DQ==",
   "success": true,
-  "projectFilePath": "E:\\wallet\\wallet.Domain\\wallet.Domain.csproj",
+  "projectFilePath": "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\abc\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.20\\microsoft.windowsdesktop.app.ref.6.0.20.nupkg.sha512",
     "C:\\Users\\abc\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.20\\microsoft.netcore.app.ref.6.0.20.nupkg.sha512",
+    "C:\\Users\\abc\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.20\\microsoft.windowsdesktop.app.ref.6.0.20.nupkg.sha512",
     "C:\\Users\\abc\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.20\\microsoft.aspnetcore.app.ref.6.0.20.nupkg.sha512",
     "C:\\Users\\abc\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.20\\microsoft.netcore.app.host.win-x64.6.0.20.nupkg.sha512"
   ],

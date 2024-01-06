@@ -120,14 +120,14 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "wallet.Domain/1.0.0": {
+      "Wallet.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/wallet.Domain.dll": {}
+          "bin/placeholder/Wallet.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/wallet.Domain.dll": {}
+          "bin/placeholder/Wallet.Domain.dll": {}
         }
       }
     }
@@ -340,10 +340,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "wallet.Domain/1.0.0": {
+    "Wallet.Domain/1.0.0": {
       "type": "project",
-      "path": "../wallet.Domain/wallet.Domain.csproj",
-      "msbuildProject": "../wallet.Domain/wallet.Domain.csproj"
+      "path": "../Wallet.Domain/Wallet.Domain.csproj",
+      "msbuildProject": "../Wallet.Domain/Wallet.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -351,7 +351,7 @@
       "AutoMapper >= 12.0.1",
       "AutoMapper.Collection >= 9.0.0",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
-      "wallet.Domain >= 1.0.0"
+      "Wallet.Domain >= 1.0.0"
     ]
   },
   "packageFolders": {
