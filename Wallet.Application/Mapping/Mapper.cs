@@ -12,9 +12,9 @@ namespace Wallet.Application.Mapper
 {
     public class Mapper
     {
-        public class PurseMappingProfile : Profile
+        public class WalletMappingProfile : Profile
         {
-            public PurseMappingProfile()
+            public WalletMappingProfile()
             {
                 CreateMap<Company, CompanyDto>().ReverseMap();
                 CreateMap<WalletE, WalletEDto>().ReverseMap();
