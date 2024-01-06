@@ -20,5 +20,6 @@ namespace wallet.Domain.Entities
         public int UserId { get; set; }
         public User User { get; set; }
         public IEnumerable<Transaction> Transactions { get; set; }
+        public IEnumerable<Voucher> Vouchers { get; set; }
     }
 }
