@@ -15,10 +15,7 @@ namespace wallet.Domain.Entities
         public string CompanyName { get; set; }
         public string CompanyLocation { get; set; }
         public float CompanyRate { get; set; }
-        public string CompanyNo
-        {
-            get; set;
-        }
+        public string CompanyNo{ get; set; }
         public IEnumerable<User> Users { get; set; }
     }
 }

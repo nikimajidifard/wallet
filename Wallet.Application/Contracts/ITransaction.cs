@@ -16,7 +16,5 @@ namespace Wallet.Application.Contracts
         TransactionDto GetTransaction(int transactionId);
         string DeleteTransaction (int transactionId);
         string UpdateTransaction(TransactionDto transaction);
-
-
     }
 }
