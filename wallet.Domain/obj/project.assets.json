@@ -67,10 +67,6 @@
             "version": "[6.0.20, 6.0.20]"
           },
           {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[6.0.20, 6.0.20]"
-          },
-          {
             "name": "Microsoft.NETCore.App.Ref",
             "version": "[6.0.20, 6.0.20]"
           },

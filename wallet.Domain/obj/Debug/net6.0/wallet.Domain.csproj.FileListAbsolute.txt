@@ -1,5 +1,12 @@
-E:\wallet\wallet.Domain\obj\Debug\net6.0\wallet.Domain.csproj.AssemblyReference.cache
-E:\wallet\wallet.Domain\obj\Debug\net6.0\wallet.Domain.GeneratedMSBuildEditorConfig.editorconfig
-E:\wallet\wallet.Domain\obj\Debug\net6.0\wallet.Domain.AssemblyInfoInputs.cache
-E:\wallet\wallet.Domain\obj\Debug\net6.0\wallet.Domain.AssemblyInfo.cs
-E:\wallet\wallet.Domain\obj\Debug\net6.0\wallet.Domain.csproj.CoreCompileInputs.cache
+E:\wallet\Wallet.Domain\bin\Debug\net6.0\Wallet.Domain.deps.json
+E:\wallet\Wallet.Domain\bin\Debug\net6.0\Wallet.Domain.dll
+E:\wallet\Wallet.Domain\bin\Debug\net6.0\Wallet.Domain.pdb
+E:\wallet\Wallet.Domain\obj\Debug\net6.0\Wallet.Domain.csproj.AssemblyReference.cache
+E:\wallet\Wallet.Domain\obj\Debug\net6.0\Wallet.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\wallet\Wallet.Domain\obj\Debug\net6.0\Wallet.Domain.AssemblyInfoInputs.cache
+E:\wallet\Wallet.Domain\obj\Debug\net6.0\Wallet.Domain.AssemblyInfo.cs
+E:\wallet\Wallet.Domain\obj\Debug\net6.0\Wallet.Domain.csproj.CoreCompileInputs.cache
+E:\wallet\Wallet.Domain\obj\Debug\net6.0\Wallet.Domain.dll
+E:\wallet\Wallet.Domain\obj\Debug\net6.0\refint\Wallet.Domain.dll
+E:\wallet\Wallet.Domain\obj\Debug\net6.0\Wallet.Domain.pdb
+E:\wallet\Wallet.Domain\obj\Debug\net6.0\ref\Wallet.Domain.dll

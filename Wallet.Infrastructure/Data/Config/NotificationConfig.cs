@@ -17,6 +17,10 @@ namespace Wallet.Infrastructure.Data.Config
             builder.HasKey(x => x.NotifId);
             builder.Property(x => x.NotificationType);
             builder.Property(x => x.NotificationDate);
+            builder.HasOne(x => x.Transaction)
+          .WithOne(x => x.Notification)
+          .HasForeignKey<Transaction>(x => x.NotificationId)
+          .IsRequired(false);
         }
     }
 }

@@ -19,5 +19,6 @@ namespace wallet.Domain.Entities
         public WalletE Wallet { get; set; }
         public Notification Notification { get; set; }
         public Label Label { get; set; }
+        public int NotificationId { get; set; } // Foreign key
     }
 }

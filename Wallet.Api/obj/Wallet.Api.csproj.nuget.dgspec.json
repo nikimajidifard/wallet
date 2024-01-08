@@ -36,9 +36,6 @@
               "E:\\wallet\\Wallet.Application\\Wallet.Application.csproj": {
                 "projectPath": "E:\\wallet\\Wallet.Application\\Wallet.Application.csproj"
               },
-              "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj": {
-                "projectPath": "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj"
-              },
               "E:\\wallet\\Wallet.Infrastructure\\Wallet.Infrastructure.csproj": {
                 "projectPath": "E:\\wallet\\Wallet.Infrastructure\\Wallet.Infrastructure.csproj"
               }
@@ -129,8 +126,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\wallet\\wallet.Domain\\wallet.Domain.csproj": {
-                "projectPath": "E:\\wallet\\wallet.Domain\\wallet.Domain.csproj"
+              "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj": {
+                "projectPath": "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj"
+              },
+              "E:\\wallet\\Wallet.Infrastructure\\Wallet.Infrastructure.csproj": {
+                "projectPath": "E:\\wallet\\Wallet.Infrastructure\\Wallet.Infrastructure.csproj"
               }
             }
           }
@@ -172,10 +172,6 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.20, 6.0.20]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
               "version": "[6.0.20, 6.0.20]"
             },
             {
@@ -252,10 +248,6 @@
               "version": "[6.0.20, 6.0.20]"
             },
             {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.20, 6.0.20]"
-            },
-            {
               "name": "Microsoft.NETCore.App.Ref",
               "version": "[6.0.20, 6.0.20]"
             },
@@ -301,8 +293,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\wallet\\wallet.Domain\\wallet.Domain.csproj": {
-                "projectPath": "E:\\wallet\\wallet.Domain\\wallet.Domain.csproj"
+              "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj": {
+                "projectPath": "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj"
               }
             }
           }
@@ -360,10 +352,6 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.20, 6.0.20]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
               "version": "[6.0.20, 6.0.20]"
             },
             {

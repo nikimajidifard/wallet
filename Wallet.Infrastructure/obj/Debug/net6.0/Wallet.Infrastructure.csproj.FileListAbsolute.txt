@@ -3,3 +3,15 @@ E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.Generated
 E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.AssemblyInfoInputs.cache
 E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.AssemblyInfo.cs
 E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.csproj.CoreCompileInputs.cache
+E:\wallet\Wallet.Infrastructure\bin\Debug\net6.0\Wallet.Infrastructure.deps.json
+E:\wallet\Wallet.Infrastructure\bin\Debug\net6.0\Wallet.Infrastructure.runtimeconfig.json
+E:\wallet\Wallet.Infrastructure\bin\Debug\net6.0\Wallet.Infrastructure.dll
+E:\wallet\Wallet.Infrastructure\bin\Debug\net6.0\Wallet.Infrastructure.pdb
+E:\wallet\Wallet.Infrastructure\bin\Debug\net6.0\Wallet.Domain.dll
+E:\wallet\Wallet.Infrastructure\bin\Debug\net6.0\Wallet.Domain.pdb
+E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.csproj.CopyComplete
+E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.dll
+E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\refint\Wallet.Infrastructure.dll
+E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.pdb
+E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\Wallet.Infrastructure.genruntimeconfig.cache
+E:\wallet\Wallet.Infrastructure\obj\Debug\net6.0\ref\Wallet.Infrastructure.dll
