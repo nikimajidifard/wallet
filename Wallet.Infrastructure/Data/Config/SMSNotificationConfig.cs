@@ -14,6 +14,7 @@ namespace Wallet.Infrastructure.Data.Config
         public void Configure(EntityTypeBuilder<SMSNotification> builder)
         {
             builder.ToTable("SMSNotification");
+
             builder.Property(x => x.Phonenumber);
         }
     }

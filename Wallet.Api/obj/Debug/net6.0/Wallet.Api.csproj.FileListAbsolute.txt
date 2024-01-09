@@ -85,3 +85,4 @@ E:\wallet\Wallet.Api\obj\Debug\net6.0\refint\Wallet.Api.dll
 E:\wallet\Wallet.Api\obj\Debug\net6.0\Wallet.Api.pdb
 E:\wallet\Wallet.Api\obj\Debug\net6.0\Wallet.Api.genruntimeconfig.cache
 E:\wallet\Wallet.Api\obj\Debug\net6.0\ref\Wallet.Api.dll
+E:\wallet\Wallet.Api\obj\Debug\net6.0\Wallet.Api.MvcApplicationPartsAssemblyInfo.cs

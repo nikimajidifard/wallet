@@ -14,6 +14,7 @@ namespace Wallet.Infrastructure.Data.Config
         public void Configure(EntityTypeBuilder<PushNotification> builder)
         {
             builder.ToTable("PushNotification");
+
             builder.Property(x => x.DeviceId);
         }
     }

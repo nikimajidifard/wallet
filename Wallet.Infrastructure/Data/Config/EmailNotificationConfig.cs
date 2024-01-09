@@ -14,8 +14,9 @@ namespace Wallet.Infrastructure.Data.Config
         public void Configure(EntityTypeBuilder<EmailNotification> builder)
         {
             builder.ToTable("EmailNotification");
+
             builder.Property(x => x.Email).HasMaxLength(50);
         }
-    
+
     }
 }
