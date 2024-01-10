@@ -12,8 +12,8 @@ using Wallet.Infrastructure.Data;
 namespace Wallet.Infrastructure.Migrations
 {
     [DbContext(typeof(WalletDBContext))]
-    [Migration("20240108064814_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240109133818_neww")]
+    partial class neww
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -317,7 +317,7 @@ namespace Wallet.Infrastructure.Migrations
                     b.HasOne("wallet.Domain.Entities.WalletE", "Wallet")
                         .WithMany("Transactions")
                         .HasForeignKey("WalletId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Label");

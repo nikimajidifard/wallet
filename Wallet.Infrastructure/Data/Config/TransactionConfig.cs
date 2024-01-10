@@ -20,10 +20,14 @@ namespace Wallet.Infrastructure.Data.Config
             builder.Property(x => x.TransactionValue).HasMaxLength(100);
             builder.Property(x => x.TransactionTime);
             builder.HasOne(x => x.Notification)
-         .WithOne(x => x.Transaction)
-         .HasForeignKey<Transaction>(x => x.NotificationId)
-         .IsRequired(false);
+             .WithOne(x => x.Transaction)
+             .HasForeignKey<Transaction>(x => x.NotificationId)
+             .IsRequired(false);
 
+            builder.HasOne(x => x.Wallet)
+      .WithMany(x => x.Transactions)
+      .HasForeignKey(x => x.WalletId)
+      .IsRequired()
+      .OnDelete(DeleteBehavior.Restrict);
         }
-    }
-}
+    

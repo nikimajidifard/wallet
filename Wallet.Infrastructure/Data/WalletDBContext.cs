@@ -41,7 +41,7 @@ namespace Wallet.Infrastructure.Data
             public WalletDBContext CreateDbContext(string[] args)
             {
                 var optionsBuilder = new DbContextOptionsBuilder<WalletDBContext>();
-                optionsBuilder.UseSqlServer(@"Server=DESKTOP-CMR9S4V;Database=DemoDb;Trusted_Connection=SSPI;Encrypt=false;TrustServerCertificate=true");
+                optionsBuilder.UseSqlServer(@"Server=DESKTOP-CMR9S4V;Database=WalletDb;Trusted_Connection=SSPI;Encrypt=false;TrustServerCertificate=true");
                 return new WalletDBContext(optionsBuilder.Options);
 
             }

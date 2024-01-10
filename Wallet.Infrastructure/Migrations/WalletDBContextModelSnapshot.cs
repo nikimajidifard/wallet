@@ -314,7 +314,7 @@ namespace Wallet.Infrastructure.Migrations
                     b.HasOne("wallet.Domain.Entities.WalletE", "Wallet")
                         .WithMany("Transactions")
                         .HasForeignKey("WalletId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Label");
