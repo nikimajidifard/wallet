@@ -30,4 +30,6 @@ namespace Wallet.Infrastructure.Data.Config
       .IsRequired()
       .OnDelete(DeleteBehavior.Restrict);
         }
+    }
+}
     

@@ -14,6 +14,7 @@ namespace wallet.Domain.Entities
         public float CurrentAmount { get; set; }
         public IEnumerable<Transaction> Transactions { get; set; }
         public WalletE Wallet { get; set; }
+        public int WalletId { get; set; }
 
     }
 }

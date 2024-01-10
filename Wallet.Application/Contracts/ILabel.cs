@@ -9,7 +9,7 @@ namespace Wallet.Application.Contracts
 {
     public interface ILabel
     {
-        string CreateLabel(string labelName, float desiredAmount);
+        string CreateLabel(LabelDto Label,string labelName, float desiredAmount, int WalletId);
         string UpdateLabel(string labelName, float currentDesiredAmount);
         string DeleteLabel(string labelName);
         LabelDto GetLabel(string labelName);
