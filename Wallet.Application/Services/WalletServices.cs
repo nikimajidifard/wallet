@@ -37,35 +37,65 @@ namespace Wallet.Application.Services
             return "wallet was added";
 
         }
-
-        public string DeleteWallet(WalletEDto wallet, int UserId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public float GetBalance(int WalletId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public WalletEDto GetWallet(int UserId)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<WalletEDto> GetWallets()
         {
-            throw new NotImplementedException();
+            var wallets = _dbContext.Wallets.ToList();
+            var walletDtos = _mapper.Map<List<WalletEDto>>(wallets);
+            return walletDtos;
+        }
+        public WalletEDto GetWallet(int UserId)
+        {
+            var wallet = _dbContext.Wallets.FirstOrDefault(w => w.UserId == UserId);
+            if (wallet == null)
+            {
+                throw new WalletNotFoundException("wallet with ID {UserId} not found", UserId);
+            }
+            wallet.UserId = UserId;
+            var walletdto = _mapper.Map<WalletEDto>(wallet);
+            return walletdto ;
+        }
+        public string UpdateWallet(WalletEDto walletdto)
+        {
+            var wallet = _mapper.Map<WalletE>(walletdto);
+            _dbContext.Wallets.Update(wallet);
+            _dbContext.SaveChanges();
+            return "wallet was updated";
         }
 
-        public List<LabelDto> Labels(int WalletId)
+
+        public string DeleteWallet(WalletEDto walletdto)
         {
-            throw new NotImplementedException();
+            var wallet = _mapper.Map<WalletE>(walletdto);
+            _dbContext.Wallets.Remove(wallet);
+            _dbContext.SaveChanges();
+            return "wallet was removed";
         }
 
-        public string UpdateWallet(WalletEDto wallet, float NewBalance, int UserId)
+        public float GetBalance(int walletId)
         {
-            throw new NotImplementedException();
+            var wallet = _dbContext.Wallets.FirstOrDefault(w =>w.WalletId == walletId);
+            if (wallet == null)
+            {
+                throw new WalletNotFoundException("wallet with ID {walletId} not found", walletId);
+            }
+            return wallet.WalletBalance;
+
         }
+
+        public List<LabelDto> Labels(int walletId)
+        {
+            var wallet = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == walletId);
+            if (wallet == null)
+            {
+                throw new WalletNotFoundException("wallet with ID {walletId} not found", walletId);
+            }
+            var labels = wallet.Labels;
+            var labeldtos = _mapper.Map<List<LabelDto>>(labels);
+            return labeldtos;
+        }
+    }
+    public class WalletNotFoundException : Exception
+    {
+        public WalletNotFoundException(string message, int id) : base(message) { }
     }
 }

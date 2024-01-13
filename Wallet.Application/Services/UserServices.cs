@@ -29,31 +29,50 @@ namespace Wallet.Application.Services
                 return "company not found";
             }
             var user = _mapper.Map<User>(userdto);
-            user.CompanyID= companyId;
+            user.CompanyID = companyId;
             user.Company = company;
             _dbContext.Add(user);
             _dbContext.SaveChanges();
             return "user was created";
         }
-
-        public string DeleteUser(UserDto user, int userId)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<UserDto> GetALLUsers()
         {
-            throw new NotImplementedException();
+            var users = _dbContext.Users.ToList();
+            var userDtos = _mapper.Map<List<UserDto>>(users);
+            return userDtos;
         }
-
         public UserDto GetUser(int userId)
         {
-            throw new NotImplementedException();
+            var user = _dbContext.Users.FirstOrDefault(u => u.UserId == userId);
+            if (user == null)
+            {
+                throw new UserNotFoundException("user with ID {userId} not found", userId);
+            }
+            user.UserId = userId;
+            var userdto = _mapper.Map<UserDto>(user);
+            return userdto;
+        }
+        public string UpdateUser(UserDto userdto)
+        {
+            var user = _mapper.Map<Company>(userdto);
+            _dbContext.Companies.Update(user);
+            _dbContext.SaveChanges();
+            return "user was updated";
         }
 
-        public string UpdateUser(UserDto user)
+        public string DeleteUser(UserDto userdto)
         {
-            throw new NotImplementedException();
+            var user = _mapper.Map<User>(userdto);
+            _dbContext.Users.Remove(user);
+            _dbContext.SaveChanges();
+            return "user was removed";
+
         }
     }
+
+    public class UserNotFoundException : Exception
+    {
+        public UserNotFoundException(string message, int id) : base(message) { }
+    }
+
 }

@@ -12,7 +12,9 @@ namespace wallet.Domain.Entities
         public int NotifId { get; set; }
         public DateTime NotificationDate { get; set; }
         public NotificationType NotificationType{ get; set; }
+        public string NotifMessage { get; set; }
         public Transaction Transaction { get; set; }
+        public int TransactionId;
     }
     public class SMSNotification: Notification
     {

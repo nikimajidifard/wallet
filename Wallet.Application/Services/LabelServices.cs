@@ -10,6 +10,7 @@ using Wallet.Application.DTOs;
 using Wallet.Infrastructure.Data;
 using wallet.Domain.Entities;
 using Label = wallet.Domain.Entities.Label;
+using static Wallet.Application.Services.UserServices;
 
 namespace Wallet.Application.Services
 {
@@ -37,24 +38,44 @@ namespace Wallet.Application.Services
             return "label was created";
         }
 
-        public string DeleteLabel(string labelName)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<LabelDto> GetAllLabels()
         {
-            throw new NotImplementedException();
+            var labels = _dbContext.Labels.ToList();
+            var LabelDtos = _mapper.Map<List<LabelDto>>(labels);
+            return LabelDtos;
         }
 
-        public LabelDto GetLabel(string labelName)
+
+        public LabelDto GetLabel(int labelId)
         {
-            throw new NotImplementedException();
+            var label = _dbContext.Labels.FirstOrDefault(l => l.LabelId == l.LabelId);
+            if (label == null)
+            {
+                throw new LabelNotFoundException("label with ID {labelId} not found", labelId);
+            }
+            label.LabelId = labelId;
+            var labeldto = _mapper.Map<LabelDto>(label);
+            return labeldto;
+        }
+        public string UpdateLabel(LabelDto labeldto)
+        {
+            var label = _mapper.Map<Label>(labeldto);
+            _dbContext.Labels.Update(label);
+            _dbContext.SaveChanges();
+            return "label was updated";
+
         }
 
-        public string UpdateLabel(string labelName, float currentDesiredAmount)
+        public string DeleteLabel(LabelDto labeldto)
         {
-            throw new NotImplementedException();
+            var label = _mapper.Map<Label>(labeldto);
+            _dbContext.Labels.Remove(label);
+            _dbContext.SaveChanges();
+            return "label was removed";
         }
+    }
+    public class LabelNotFoundException : Exception
+    {
+        public LabelNotFoundException(string message, int id) : base(message) { }
     }
 }

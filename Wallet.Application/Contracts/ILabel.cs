@@ -10,9 +10,9 @@ namespace Wallet.Application.Contracts
     public interface ILabel
     {
         string CreateLabel(LabelDto Label,string labelName, float desiredAmount, int WalletId);
-        string UpdateLabel(string labelName, float currentDesiredAmount);
-        string DeleteLabel(string labelName);
-        LabelDto GetLabel(string labelName);
+        string UpdateLabel(LabelDto labeldto);
+        string DeleteLabel(LabelDto labeldto);
+        LabelDto GetLabel(int labelId);
         List<LabelDto> GetAllLabels();
     }
 }

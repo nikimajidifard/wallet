@@ -10,9 +10,9 @@ namespace Wallet.Application.Contracts
 {
     public interface IWallet
     {
-        string CreateWallet(WalletEDto wallet, int userId);
-        string UpdateWallet(WalletEDto wallet,float newBalance, int userId);
-        string DeleteWallet(WalletEDto wallet, int userId);
+        string CreateWallet(WalletEDto walletdto, int userId);
+        string UpdateWallet(WalletEDto walletdto);
+        string DeleteWallet(WalletEDto walletdto);
         List<WalletEDto> GetWallets();
         WalletEDto GetWallet(int userId);
         float GetBalance(int walletId);
