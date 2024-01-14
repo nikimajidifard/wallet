@@ -10,7 +10,7 @@ namespace Wallet.Application.Contracts
     public interface ICompany
     {
         string CreateCompany(CompanyDto company);
-        string DeleteCompany(CompanyDto company);
+        string DeleteCompany(int companyId);
         string UpdateCompany(CompanyDto company);
         List<CompanyDto> GetALLCompanies();
         CompanyDto GetCompany(int companyId);

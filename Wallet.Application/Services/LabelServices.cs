@@ -11,6 +11,7 @@ using Wallet.Infrastructure.Data;
 using wallet.Domain.Entities;
 using Label = wallet.Domain.Entities.Label;
 using static Wallet.Application.Services.UserServices;
+using System.ComponentModel.Design;
 
 namespace Wallet.Application.Services
 {
@@ -66,12 +67,13 @@ namespace Wallet.Application.Services
 
         }
 
-        public string DeleteLabel(LabelDto labeldto)
+        public string DeleteLabel(int labelId)
         {
-            var label = _mapper.Map<Label>(labeldto);
+            var label = _dbContext.Labels.FirstOrDefault(c => c.LabelId == labelId);
             _dbContext.Labels.Remove(label);
             _dbContext.SaveChanges();
             return "label was removed";
+
         }
     }
     public class LabelNotFoundException : Exception

@@ -11,7 +11,7 @@ namespace Wallet.Application.Contracts
     {
         string CreateVoucher(VoucherDto voucherdto, int voucherDest, int walletId);
         string UpdateVoucher(VoucherDto voucherdto);
-        string DeleteVoucher(VoucherDto voucherdto);
+        string DeleteVoucher(int voucherId);
         List<VoucherDto> GetVouchers();
         VoucherDto GetVoucher(int voucherId);
     }

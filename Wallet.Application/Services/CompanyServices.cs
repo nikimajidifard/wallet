@@ -24,10 +24,10 @@ namespace Wallet.Application.Services
 
         public string CreateCompany(CompanyDto companydto)
         {
-            var company = _mapper.Map<CompanyDto>(companydto);
-            _dbContext.Add<CompanyDto>(company);
+            var company = _mapper.Map<Company>(companydto);
+            _dbContext.Companies.Add(company);
             _dbContext.SaveChanges();
-            return "company was created";
+            return "Company was added";
         }
 
         public List<CompanyDto> GetALLCompanies()
@@ -53,9 +53,9 @@ namespace Wallet.Application.Services
             return "Comapny was updated";
         }
 
-        public string DeleteCompany(CompanyDto companydto)
+        public string DeleteCompany(int companyId) 
         {
-            var company = _mapper.Map<Company>(companydto);
+            var company = _dbContext.Companies.FirstOrDefault(c => c.CompanyId == companyId);
             _dbContext.Companies.Remove(company);
             _dbContext.SaveChanges();
             return "company was removed";

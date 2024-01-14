@@ -9,6 +9,7 @@ using Wallet.Application.DTOs;
 using AutoMapper;
 using Wallet.Infrastructure.Data;
 using wallet.Domain.Entities;
+using System.ComponentModel.Design;
 
 
 namespace Wallet.Application.Services
@@ -63,9 +64,9 @@ namespace Wallet.Application.Services
         }
 
 
-        public string DeleteWallet(WalletEDto walletdto)
+        public string DeleteWallet(int walletID)
         {
-            var wallet = _mapper.Map<WalletE>(walletdto);
+            var wallet = _dbContext.Wallets.FirstOrDefault(c => c.WalletId == walletID);
             _dbContext.Wallets.Remove(wallet);
             _dbContext.SaveChanges();
             return "wallet was removed";

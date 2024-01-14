@@ -12,7 +12,7 @@ namespace Wallet.Application.Contracts
     {
         string CreateWallet(WalletEDto walletdto, int userId);
         string UpdateWallet(WalletEDto walletdto);
-        string DeleteWallet(WalletEDto walletdto);
+        string DeleteWallet(int walletId);
         List<WalletEDto> GetWallets();
         WalletEDto GetWallet(int userId);
         float GetBalance(int walletId);

@@ -72,9 +72,9 @@ namespace Wallet.Api.Controllers
         }
         [HttpDelete]
         [Route("DeleteWallet")]
-        public ActionResult<string> DeleteWallet(WalletEDto walletDto)
+        public ActionResult<string> DeleteWallet(int walletId)
         {
-            var response = WalletService.DeleteWallet(walletDto);
+            var response = WalletService.DeleteWallet(walletId);
             return Ok(response);
         }
         // END WALLET METHODS
@@ -98,9 +98,9 @@ namespace Wallet.Api.Controllers
 
         [HttpDelete]
         [Route("DeleteUser")]
-        public ActionResult<string> DeleteUser(UserDto userDto)
+        public ActionResult<string> DeleteUser(int userId)
         {
-            var user = UserService.DeleteUser(userDto);
+            var user = UserService.DeleteUser(userId);
             return Ok(user);
         }
 
@@ -155,9 +155,9 @@ namespace Wallet.Api.Controllers
 
         [HttpDelete]
         [Route("DeleteCompany")]
-        public ActionResult<string> DeleteCompany(CompanyDto companyDto)
+        public ActionResult<string> DeleteCompany(int companyId)
         {
-            var response = CompanyService.DeleteCompany(companyDto);
+            var response = CompanyService.DeleteCompany(companyId);
             return Ok(response);
         }
 
@@ -197,9 +197,9 @@ namespace Wallet.Api.Controllers
 
         [HttpDelete]
         [Route("DeleteLabel")]
-        public ActionResult<string> DeleteLabel(LabelDto labelDto)
+        public ActionResult<string> DeleteLabel(int labelId)
         {
-            var response = LabelService.DeleteLabel(labelDto);
+            var response = LabelService.DeleteLabel(labelId);
             return Ok(response);
         }
 
@@ -239,9 +239,9 @@ namespace Wallet.Api.Controllers
 
         [HttpDelete]
         [Route("DeleteVoucher")]
-        public ActionResult<string> DeleteVoucher(VoucherDto voucherDto)
+        public ActionResult<string> DeleteVoucher(int voucherId)
         {
-            var response = VoucherService.DeleteVoucher(voucherDto);
+            var response = VoucherService.DeleteVoucher(voucherId);
             return Ok(response);
         }
 

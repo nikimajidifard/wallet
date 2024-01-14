@@ -8,6 +8,7 @@ using Wallet.Application.Contracts;
 using Wallet.Application.DTOs;
 using Wallet.Infrastructure.Data;
 using wallet.Domain.Entities;
+using System.ComponentModel.Design;
 
 
 namespace Wallet.Application.Services
@@ -61,9 +62,9 @@ namespace Wallet.Application.Services
         }
 
 
-        public string DeleteVoucher(VoucherDto voucherdto)
+        public string DeleteVoucher(int voucherID)
         {
-            var voucher = _mapper.Map<Voucher>(voucherdto);
+            var voucher = _dbContext.Vouchers.FirstOrDefault(c => c.VoucherId == voucherID);
             _dbContext.Vouchers.Remove(voucher);
             _dbContext.SaveChanges();
             return "voucher was removed";

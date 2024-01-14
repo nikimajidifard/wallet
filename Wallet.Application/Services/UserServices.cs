@@ -8,6 +8,7 @@ using Wallet.Application.Contracts;
 using Wallet.Application.DTOs;
 using Wallet.Infrastructure.Data;
 using wallet.Domain.Entities;
+using System.ComponentModel.Design;
 
 namespace Wallet.Application.Services
 {
@@ -33,7 +34,7 @@ namespace Wallet.Application.Services
             user.Company = company;
             _dbContext.Add(user);
             _dbContext.SaveChanges();
-            return "user was created";
+            return "user was added";
         }
         public List<UserDto> GetALLUsers()
         {
@@ -60,10 +61,10 @@ namespace Wallet.Application.Services
             return "user was updated";
         }
 
-        public string DeleteUser(UserDto userdto)
+        public string DeleteUser(int userId)
         {
-            var user = _mapper.Map<User>(userdto);
-            _dbContext.Users.Remove(user);
+            var user = _dbContext.Users.FirstOrDefault(c => c.UserId == userId);
+            _dbContext.Companies.Remove(user);
             _dbContext.SaveChanges();
             return "user was removed";
 

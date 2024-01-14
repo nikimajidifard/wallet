@@ -11,7 +11,7 @@ namespace Wallet.Application.Contracts
     {
         string CreateLabel(LabelDto Label,string labelName, float desiredAmount, int WalletId);
         string UpdateLabel(LabelDto labeldto);
-        string DeleteLabel(LabelDto labeldto);
+        string DeleteLabel(int labelId);
         LabelDto GetLabel(int labelId);
         List<LabelDto> GetAllLabels();
     }

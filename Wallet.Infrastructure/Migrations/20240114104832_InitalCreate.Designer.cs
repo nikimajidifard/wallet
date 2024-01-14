@@ -12,7 +12,7 @@ using Wallet.Infrastructure.Data;
 namespace Wallet.Infrastructure.Migrations
 {
     [DbContext(typeof(WalletDBContext))]
-    [Migration("20240114101940_InitalCreate")]
+    [Migration("20240114104832_InitalCreate")]
     partial class InitalCreate
     {
         /// <inheritdoc />

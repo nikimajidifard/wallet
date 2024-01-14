@@ -10,7 +10,7 @@ namespace Wallet.Application.Contracts
     public interface IUser
     {
         string CreateUser(UserDto user, int companyId);
-        string DeleteUser(UserDto user);
+        string DeleteUser(int userId);
         string UpdateUser(UserDto user);
         List<UserDto> GetALLUsers();
         UserDto GetUser(int userId);
