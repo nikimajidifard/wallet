@@ -12,8 +12,8 @@ using Wallet.Infrastructure.Data;
 namespace Wallet.Infrastructure.Migrations
 {
     [DbContext(typeof(WalletDBContext))]
-    [Migration("20240109133818_neww")]
-    partial class neww
+    [Migration("20240114101940_InitalCreate")]
+    partial class InitalCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,6 +93,10 @@ namespace Wallet.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotifId"));
+
+                    b.Property<string>("NotifMessage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("NotificationDate")
                         .HasColumnType("datetime2");
@@ -195,9 +199,6 @@ namespace Wallet.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VoucherId"));
 
                     b.Property<int>("DestVoucherId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SourceVoucherId")
                         .HasColumnType("int");
 
                     b.Property<float>("VoucherAmount")

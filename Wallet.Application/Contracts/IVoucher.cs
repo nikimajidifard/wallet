@@ -9,7 +9,7 @@ namespace Wallet.Application.Contracts
 {
     public interface IVoucher
     {
-        string CreateVoucher(VoucherDto voucherdto, int voucherDest, int voucherSource);
+        string CreateVoucher(VoucherDto voucherdto, int voucherDest, int walletId);
         string UpdateVoucher(VoucherDto voucherdto);
         string DeleteVoucher(VoucherDto voucherdto);
         List<VoucherDto> GetVouchers();

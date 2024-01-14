@@ -82,7 +82,7 @@ namespace Wallet.Application.Services
 
         }
 
-        public List<LabelDto> Labels(int walletId)
+        public List<LabelDto> GetLabels(int walletId)
         {
             var wallet = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == walletId);
             if (wallet == null)

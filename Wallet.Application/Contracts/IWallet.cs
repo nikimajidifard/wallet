@@ -16,7 +16,7 @@ namespace Wallet.Application.Contracts
         List<WalletEDto> GetWallets();
         WalletEDto GetWallet(int userId);
         float GetBalance(int walletId);
-        List<LabelDto> Labels(int walletId);
+        List<LabelDto> GetLabels(int walletId);
 
     }
 }

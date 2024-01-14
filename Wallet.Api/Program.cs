@@ -21,7 +21,7 @@ builder.Services.AddScoped<IVoucher, VoucherServices>();
 builder.Services.AddAutoMapper(typeof(WalletMappingProfile));
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<PurseDbContext>(options =>
+builder.Services.AddDbContext<WalletDBContext>(options =>
 {
     // Configure your database connection here
     options.UseSqlServer(@"Server=DESKTOP-CMR9S4V;Database=WalletDb;Trusted_Connection=SSPI;Encrypt=false;TrustServerCertificate=true");

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Wallet.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class neww : Migration
+    public partial class InitalCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -55,6 +55,7 @@ namespace Wallet.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NotificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NotificationType = table.Column<int>(type: "int", nullable: false),
+                    NotifMessage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -170,7 +171,6 @@ namespace Wallet.Infrastructure.Migrations
                 {
                     VoucherId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SourceVoucherId = table.Column<int>(type: "int", nullable: false),
                     DestVoucherId = table.Column<int>(type: "int", nullable: false),
                     VoucherDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     VoucherStatus = table.Column<int>(type: "int", nullable: false),
