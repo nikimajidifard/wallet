@@ -179,4 +179,4 @@ namespace Wallet.Application.Services
     {
         public TransactionNotFoundException(string message, int id) : base(message) { }
     }
-}
+

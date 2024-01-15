@@ -64,7 +64,7 @@ namespace Wallet.Application.Services
         public string DeleteUser(int userId)
         {
             var user = _dbContext.Users.FirstOrDefault(c => c.UserId == userId);
-            _dbContext.Companies.Remove(user);
+            _dbContext.Users.Remove(user);
             _dbContext.SaveChanges();
             return "user was removed";
 

@@ -22,7 +22,7 @@ namespace Wallet.Application.Services
         }
         public string Notify(NotificationDto Notifdto, int transactionId, string message)
         {
-            var transaction = _dbContext.Transactions.FirstOrDefault(t => t.TransactionID == transactionId);
+            var transaction = _dbContext.Transactions.FirstOrDefault(t => t.TransactionId == transactionId);
             if (transaction == null) { return "transaction not found"; }
             var notification = _mapper.Map<Notification>(Notifdto);
             notification.Transaction = transaction;

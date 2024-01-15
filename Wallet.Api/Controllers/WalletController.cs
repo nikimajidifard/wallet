@@ -17,10 +17,11 @@ namespace Wallet.Api.Controllers
         private readonly IVoucher VoucherService;
         private readonly ILabel LabelService;
         private readonly INotification NotificationService;
+        private readonly ITransaction TransactionService;
 
 
 
-        public WalletController(IWallet WalletService, IUser UserService, ICompany CompanyService, IVoucher VoucherService, ILabel LabelService, INotification NotificationService)
+        public WalletController(IWallet WalletService, IUser UserService, ICompany CompanyService, IVoucher VoucherService, ILabel LabelService, INotification NotificationService, ITransaction transactionService)
         {
             this.WalletService = WalletService;
             this.UserService = UserService;
@@ -28,6 +29,7 @@ namespace Wallet.Api.Controllers
             this.VoucherService = VoucherService;
             this.LabelService = LabelService;
             this.NotificationService = NotificationService;
+            this.TransactionService = transactionService;
         }
 
         //WALLET
@@ -270,7 +272,48 @@ namespace Wallet.Api.Controllers
             var notifications = NotificationService.GetAllNotifications();
             return Ok(notifications);
         }
-        // END OF NOTIFICAIION METHODS
-       
+        // END OF NOTIFICAIION METHOd
+
+        // ///////////////////////////////////transaction/////////////////////////////////////////////////////
+
+        [HttpGet]
+        [Route("GetTransaction")]
+        public ActionResult<NotificationDto> GetTransaction(int transactionId)
+        {
+            var transaction = TransactionService.GetTransaction(transactionId);
+            return Ok(transaction);
+        }
+
+        [HttpGet]
+        [Route("GetALLTransactions")]
+        public ActionResult<List<NotificationDto>> GetAllTransactions()
+        {
+            var transactions = TransactionService.GetALLTransactions();
+            return Ok(transactions);
+        }
+
+        [HttpPost]
+        [Route("DepositTransaction")]
+        public ActionResult<string> Deposit(int walletId, float amount, LabelDto labeldto)
+        {
+            var response = TransactionService.Deposit(walletId, amount,labeldto);
+            return Ok(response);
+        }
+        [HttpPost]
+        [Route("WithDrawTransaction")]
+        public ActionResult<string> Withdraw(int walletId, float amount, LabelDto labeldto)
+        {
+            var response = TransactionService.Withdraw(walletId, amount,labeldto);
+            return Ok(response);
+        }
+        [HttpPost]
+        [Route("MoveTransaction")]
+        public ActionResult<string> Move(int sourceWalletId, int destWalletId, float amount)
+        {
+            var response = TransactionService.Move(sourceWalletId, destWalletId, amount);
+            return Ok(response);
+        }
+
+        // END OF THE TRANSACTION METHODS
     }
 }
