@@ -14,7 +14,5 @@ namespace Wallet.Application.Contracts
         string Move(int sourceWalletId, int destWalletId, float amount);
         List<TransactionDto> GetALLTransactions();
         TransactionDto GetTransaction(int transactionId);
-        string DeleteTransaction (int transactionId);
-        string UpdateTransaction(TransactionDto transaction);
     }
 }

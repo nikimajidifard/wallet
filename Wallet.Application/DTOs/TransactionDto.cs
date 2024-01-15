@@ -10,8 +10,8 @@ namespace Wallet.Application.DTOs
 {
     public class TransactionDto
     {
-        public int TransactionID { get; set; }
-        public TransactionType TransactionKind { get; set; }
+        public int TransactionId { get; set; }
+        public TransactionType TransactionType { get; set; }
         public TransactionStatus TransactionStatus { get; set; }
         public DateTime TransactionTime { get; set; }
         public float TransactionValue { get; set; }

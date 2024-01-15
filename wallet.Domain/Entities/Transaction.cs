@@ -10,8 +10,8 @@ namespace wallet.Domain.Entities
 {
     public class Transaction
     {
-        public int TransactionID { get; set; }
-        public TransactionType TransactionKind { get; set; }
+        public int TransactionId { get; set; }
+        public TransactionType TransactionType { get; set; }
         public Status TransactionStatus { get; set; }
         public DateTime TransactionTime { get; set; }
         public float TransactionValue { get; set; }
