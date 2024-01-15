@@ -14,8 +14,8 @@ namespace Wallet.Infrastructure.Data.Config
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
             builder.ToTable("Transaction");
-            builder.HasKey(x => x.TransactionID);
-            builder.Property(x => x.TransactionKind).HasMaxLength(100);
+            builder.HasKey(x => x.TransactionId);
+            builder.Property(x => x.TransactionType).HasMaxLength(100);
             builder.Property(x => x.TransactionStatus).HasMaxLength(100);
             builder.Property(x => x.TransactionValue).HasMaxLength(100);
             builder.Property(x => x.TransactionTime);

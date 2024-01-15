@@ -23,31 +23,48 @@ namespace Wallet.Application.Services
             _dbContext = dbcontext;
             _mapper = mapper;
         }
-        public string Deposit(int walletId, float amount)
+        public string Deposit(int walletId, float amount, LabelDto labeldto)
         {
             var wallet = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == walletId);
             if (wallet == null)
                 return "wallet not found.";
+            var label = _mapper.Map<Label>(labeldto);
+            bool flag = false;
 
-            if(wallet.IsBlocked == false)
-            {
-                var transaction = new Transaction
+            if (label == null) { flag = true ;}
+
+            if(wallet.Labels.Contains(label))
+            { 
+                var newvalue = label.CurrentAmount + amount;
+                if (newvalue <= label.DesiredAmount || flag == true )
                 {
-                    TransactionType = TransactionType.deposit,
-                    TransactionStatus = Status.successful,
-                    TransactionTime = DateTime.Now,
-                    TransactionValue = amount,
-                    Wallet = wallet
-                };
+                    label.CurrentAmount = newvalue;
+                    if (wallet.IsBlocked == false)
+                    {
+                        var transaction = new Transaction
+                        {
+                            TransactionType = TransactionType.deposit,
+                            TransactionStatus = Status.successful,
+                            TransactionTime = DateTime.Now,
+                            TransactionValue = amount,
+                            Wallet = wallet
+                        };
 
-               wallet.WalletBalance += amount;
-               _dbContext.Transactions.Add(transaction);
-               _dbContext.SaveChanges();
-                return "Deposit successful.";
+                        wallet.WalletBalance += amount;
+                        _dbContext.Transactions.Add(transaction);
+                        _dbContext.SaveChanges();
+                        return "Deposit successful.";
 
+                    }
+
+                    return "blocked wallet";
+
+                }
+                return "the amount is more than label desiredamount";
             }
-
-            return "blocked wallet";  
+   
+            return "the wallet does not contain this label";
+ 
         }
 
         public List<TransactionDto> GetALLTransactions()
@@ -112,32 +129,50 @@ namespace Wallet.Application.Services
             return "Money transfer successful.";
         }
 
-        public string Withdraw(int walletId, float amount)
+        public string Withdraw(int walletId, float amount, LabelDto labeldto)
         {
             var wallet = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == walletId);
             if (wallet == null)
                 return "wallet not found.";
+            var label = _mapper.Map<Label>(labeldto);
+            bool flag = false;
 
-            if (wallet.IsBlocked == false)
+            if (label == null) { flag = true; }
+
+            if (wallet.Labels.Contains(label))
             {
-                var transaction = new Transaction
+                var newvalue = label.CurrentAmount - amount;
+                if (newvalue >= 0 || flag == true)
                 {
-                    TransactionType = TransactionType.deposit,
-                    TransactionStatus = Status.successful,
-                    TransactionTime = DateTime.Now,
-                    TransactionValue = amount,
-                    Wallet = wallet
-                };
+                    label.CurrentAmount = newvalue;
+                    if (wallet.IsBlocked == false)
+                    {
+                        var transaction = new Transaction
+                        {
+                            TransactionType = TransactionType.deposit,
+                            TransactionStatus = Status.successful,
+                            TransactionTime = DateTime.Now,
+                            TransactionValue = amount,
+                            Wallet = wallet
+                        };
 
-                wallet.WalletBalance -= amount;
-                _dbContext.Transactions.Add(transaction);
-                _dbContext.SaveChanges();
-                return "Deposit successful.";
+                        wallet.WalletBalance -= amount;
+                        _dbContext.Transactions.Add(transaction);
+                        _dbContext.SaveChanges();
+                        return "Deposit successful.";
 
+                    }
+
+                    return "blocked wallet";
+
+                }
+                return "the amount is more than label desiredamount";
             }
 
-            return "blocked wallet";
+            return "the wallet does not contain this label";
+
         }
+    }
     }
 
     public class TransactionNotFoundException : Exception

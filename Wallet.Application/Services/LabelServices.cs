@@ -38,6 +38,7 @@ namespace Wallet.Application.Services
             _dbContext.SaveChanges();
             return "label was created";
         }
+        
 
         public List<LabelDto> GetAllLabels()
         {
