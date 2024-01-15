@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Wallet.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitalCreate : Migration
+    public partial class Ini : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -74,7 +74,7 @@ namespace Wallet.Infrastructure.Migrations
                 {
                     WalletId = table.Column<int>(type: "int", nullable: false),
                     WalletBalance = table.Column<float>(type: "real", nullable: false, defaultValue: 0f),
-                    WalletType = table.Column<int>(type: "int", maxLength: 100, nullable: false),
+                    WalletType = table.Column<int>(type: "int", nullable: false),
                     IsBlocked = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -192,9 +192,9 @@ namespace Wallet.Infrastructure.Migrations
                 name: "Transaction",
                 columns: table => new
                 {
-                    TransactionID = table.Column<int>(type: "int", nullable: false)
+                    TransactionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TransactionKind = table.Column<int>(type: "int", maxLength: 100, nullable: false),
+                    TransactionType = table.Column<int>(type: "int", maxLength: 100, nullable: false),
                     TransactionStatus = table.Column<int>(type: "int", maxLength: 100, nullable: false),
                     TransactionTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TransactionValue = table.Column<float>(type: "real", maxLength: 100, nullable: false),
@@ -204,7 +204,7 @@ namespace Wallet.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Transaction", x => x.TransactionID);
+                    table.PrimaryKey("PK_Transaction", x => x.TransactionId);
                     table.ForeignKey(
                         name: "FK_Transaction_Label_LabelId",
                         column: x => x.LabelId,

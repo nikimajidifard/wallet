@@ -9,8 +9,7 @@ using Wallet.Application.Contracts;
 using Wallet.Application.DTOs;
 using Wallet.Infrastructure.Data;
 using wallet.Domain.Entities;
-using Label = wallet.Domain.Entities.Label;
-using static Wallet.Application.Services.UserServices;
+using Wallet.Application.Services;
 using System.ComponentModel.Design;
 
 namespace Wallet.Application.Services
@@ -24,19 +23,22 @@ namespace Wallet.Application.Services
             _dbContext = dbContext;
             _mapper= mapper;
         }
-        public string CreateLabel(LabelDto labeldto,string labelName, float desiredAmount, int WalletId)
+        public string CreateLabel(LabelDto labeldto, int walledId)
         {
-            var wallet = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == WalletId);
+            var label = _mapper.Map<wallet.Domain.Entities.Label>(labeldto);
+            var wallet = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == w.WalletId);
             if (wallet == null) { return "wallet not found"; }
 
-            var label = _mapper.Map<Label>(labeldto);
-            label.LabelName = labelName;
-            label.DesiredAmount = desiredAmount;
-            label.WalletId = WalletId;
-            label.Wallet = wallet;
-            _dbContext.Add(label);
-            _dbContext.SaveChanges();
-            return "label was created";
+            if ((label.DesiredAmount < wallet.WalletBalance) && (label.CurrentAmount < wallet.WalletBalance))
+            {
+                label.WalletId = walledId;
+                label.Wallet = wallet; ;
+                _dbContext.Add(label);
+                _dbContext.SaveChanges();
+                return "label was created";
+            }
+            return "the value of label more than wallet balance";
+            
         }
         
 
@@ -61,7 +63,7 @@ namespace Wallet.Application.Services
         }
         public string UpdateLabel(LabelDto labeldto)
         {
-            var label = _mapper.Map<Label>(labeldto);
+            var label = _mapper.Map<wallet.Domain.Entities.Label>(labeldto);
             _dbContext.Labels.Update(label);
             _dbContext.SaveChanges();
             return "label was updated";

@@ -21,7 +21,7 @@ namespace Wallet.Api.Controllers
 
 
 
-        public WalletController(IWallet WalletService, IUser UserService, ICompany CompanyService, IVoucher VoucherService, ILabel LabelService, INotification NotificationService, ITransaction transactionService)
+        public WalletController(IWallet WalletService, IUser UserService, ICompany CompanyService, IVoucher VoucherService, ILabel LabelService, INotification NotificationService, ITransaction TransactionService)
         {
             this.WalletService = WalletService;
             this.UserService = UserService;
@@ -29,15 +29,15 @@ namespace Wallet.Api.Controllers
             this.VoucherService = VoucherService;
             this.LabelService = LabelService;
             this.NotificationService = NotificationService;
-            this.TransactionService = transactionService;
+            this.TransactionService = TransactionService;
         }
 
         //WALLET
         [HttpPost]
         [Route("AddWallet")]
-        public ActionResult<string> AddWallet(WalletEDto walletDto, int companyId)
+        public ActionResult<string> AddWallet(WalletEDto walletDto, int userId)
         {
-            var response = WalletService.CreateWallet(walletDto, companyId);
+            var response = WalletService.CreateWallet(walletDto, userId);
             return Ok(response);
         }
 
@@ -168,9 +168,9 @@ namespace Wallet.Api.Controllers
         // /////////////////////////////////////label//////////////////////////////////////////////////////
         [HttpPost]
         [Route("AddLabel")]
-        public ActionResult<string> AddLabel(LabelDto labeldto, string labelName, float desiredAmount, int WalletId)
+        public ActionResult<string> AddLabel(LabelDto labeldto, int walletID)
         {
-            var response = LabelService.CreateLabel(labeldto,labelName,desiredAmount,WalletId);
+            var response = LabelService.CreateLabel(labeldto,walletID);
             return Ok(response);
         }
 
@@ -186,8 +186,8 @@ namespace Wallet.Api.Controllers
         [Route("GetALLLabels")]
         public ActionResult<List<LabelDto>> GetALLLabels()
         {
-            var vouchers = VoucherService.GetVouchers();
-            return Ok(vouchers);
+            var labels = LabelService.GetAllLabels();
+            return Ok(labels);
         }
         [HttpPut]
         [Route("UpdateLabel")]
@@ -278,7 +278,7 @@ namespace Wallet.Api.Controllers
 
         [HttpGet]
         [Route("GetTransaction")]
-        public ActionResult<NotificationDto> GetTransaction(int transactionId)
+        public ActionResult<TransactionDto> GetTransaction(int transactionId)
         {
             var transaction = TransactionService.GetTransaction(transactionId);
             return Ok(transaction);
@@ -286,7 +286,7 @@ namespace Wallet.Api.Controllers
 
         [HttpGet]
         [Route("GetALLTransactions")]
-        public ActionResult<List<NotificationDto>> GetAllTransactions()
+        public ActionResult<List<TransactionDto>> GetAllTransactions()
         {
             var transactions = TransactionService.GetALLTransactions();
             return Ok(transactions);
@@ -294,16 +294,16 @@ namespace Wallet.Api.Controllers
 
         [HttpPost]
         [Route("DepositTransaction")]
-        public ActionResult<string> Deposit(int walletId, float amount, LabelDto labeldto)
+        public ActionResult<string> Deposit(int walletId, float amount, string labelname)
         {
-            var response = TransactionService.Deposit(walletId, amount,labeldto);
+            var response = TransactionService.Deposit(walletId, amount,labelname);
             return Ok(response);
         }
         [HttpPost]
         [Route("WithDrawTransaction")]
-        public ActionResult<string> Withdraw(int walletId, float amount, LabelDto labeldto)
+        public ActionResult<string> Withdraw(int walletId, float amount, string labelname)
         {
-            var response = TransactionService.Withdraw(walletId, amount,labeldto);
+            var response = TransactionService.Withdraw(walletId, amount,labelname);
             return Ok(response);
         }
         [HttpPost]

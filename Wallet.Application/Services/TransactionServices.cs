@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Wallet.Application.Services
 {
-    internal class TransactionServices : ITransaction
+    public class TransactionServices : ITransaction
     {
         private readonly WalletDBContext _dbContext;
         private readonly IMapper _mapper;
@@ -23,14 +23,14 @@ namespace Wallet.Application.Services
             _dbContext = dbcontext;
             _mapper = mapper;
         }
-        public string Deposit(int walletId, float amount, LabelDto labeldto)
+        public string Deposit(int walletId, float amount, string labelname)
         {
             var wallet = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == walletId);
+            var label = _dbContext.Labels.FirstOrDefault(l => l.WalletId == walletId && l.LabelName == labelname);
             if (wallet == null)
                 return "wallet not found.";
-            var label = _mapper.Map<Label>(labeldto);
             bool flag = false;
-
+          
             if (label == null) { flag = true ;}
 
             if(wallet.Labels.Contains(label))
@@ -129,12 +129,14 @@ namespace Wallet.Application.Services
             return "Money transfer successful.";
         }
 
-        public string Withdraw(int walletId, float amount, LabelDto labeldto)
+        public string Withdraw(int walletId, float amount, string labelname)
         {
             var wallet = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == walletId);
+            var label = _dbContext.Labels.FirstOrDefault(l => l.WalletId == walletId && l.LabelName == labelname);
             if (wallet == null)
                 return "wallet not found.";
-            var label = _mapper.Map<Label>(labeldto);
+
+
             bool flag = false;
 
             if (label == null) { flag = true; }

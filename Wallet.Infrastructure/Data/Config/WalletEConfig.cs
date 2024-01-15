@@ -16,7 +16,6 @@ namespace Wallet.Infrastructure.Data.Config
             builder.ToTable("WalletE");
             builder.HasKey(x => x.WalletId);
             builder.Property(x => x.WalletBalance).HasDefaultValue(0.0);
-            builder.Property(x => x.WalletType).HasMaxLength(100);
             builder.Property(x => x.IsBlocked).HasDefaultValue(false);
         }
     }

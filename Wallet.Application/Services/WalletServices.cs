@@ -33,7 +33,7 @@ namespace Wallet.Application.Services
             var Wallet = _mapper.Map<WalletE>(walletdto);
             Wallet.User = user;
             Wallet.UserId= UserId;
-            _dbContext.Add(walletdto);
+            _dbContext.Add(Wallet);
             _dbContext.SaveChanges();
             return "wallet was added";
 

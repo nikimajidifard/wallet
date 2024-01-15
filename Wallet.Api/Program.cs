@@ -16,6 +16,7 @@ builder.Services.AddScoped<INotification, NotificationServices>();
 builder.Services.AddScoped<IUser, UserServices>();
 builder.Services.AddScoped<IWallet, WalletServices>();
 builder.Services.AddScoped<IVoucher, VoucherServices>();
+builder.Services.AddScoped<ITransaction, TransactionServices>();
 
 // Add AutoMapper configuration
 builder.Services.AddAutoMapper(typeof(WalletMappingProfile));

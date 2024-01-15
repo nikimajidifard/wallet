@@ -12,8 +12,8 @@ using Wallet.Infrastructure.Data;
 namespace Wallet.Infrastructure.Migrations
 {
     [DbContext(typeof(WalletDBContext))]
-    [Migration("20240114104832_InitalCreate")]
-    partial class InitalCreate
+    [Migration("20240115120648_Ini")]
+    partial class Ini
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -118,20 +118,16 @@ namespace Wallet.Infrastructure.Migrations
 
             modelBuilder.Entity("wallet.Domain.Entities.Transaction", b =>
                 {
-                    b.Property<int>("TransactionID")
+                    b.Property<int>("TransactionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"));
 
                     b.Property<int>("LabelId")
                         .HasColumnType("int");
 
                     b.Property<int>("NotificationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TransactionKind")
-                        .HasMaxLength(100)
                         .HasColumnType("int");
 
                     b.Property<int>("TransactionStatus")
@@ -141,6 +137,10 @@ namespace Wallet.Infrastructure.Migrations
                     b.Property<DateTime>("TransactionTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("TransactionType")
+                        .HasMaxLength(100)
+                        .HasColumnType("int");
+
                     b.Property<float>("TransactionValue")
                         .HasMaxLength(100)
                         .HasColumnType("real");
@@ -148,7 +148,7 @@ namespace Wallet.Infrastructure.Migrations
                     b.Property<int>("WalletId")
                         .HasColumnType("int");
 
-                    b.HasKey("TransactionID");
+                    b.HasKey("TransactionId");
 
                     b.HasIndex("LabelId");
 
@@ -241,7 +241,6 @@ namespace Wallet.Infrastructure.Migrations
                         .HasDefaultValue(0f);
 
                     b.Property<int>("WalletType")
-                        .HasMaxLength(100)
                         .HasColumnType("int");
 
                     b.HasKey("WalletId");

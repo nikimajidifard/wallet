@@ -12,5 +12,6 @@ namespace Wallet.Application.DTOs
         public string LabelName { get; set; }
         public float DesiredAmount { get; set; }
         public float CurrentAmount { get; set; }
+        public int WalletId { get; set; }
     }
 }

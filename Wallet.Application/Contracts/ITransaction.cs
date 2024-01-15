@@ -9,8 +9,8 @@ namespace Wallet.Application.Contracts
 {
     public interface ITransaction
     {
-        string Deposit(int walletId, float amount,LabelDto labeldto);
-        string Withdraw(int walletId, float amount, LabelDto labeldto);
+        string Deposit(int walletId, float amount,string labelname);
+        string Withdraw(int walletId, float amount, string labelname);
         string Move(int sourceWalletId, int destWalletId, float amount);
         List<TransactionDto> GetALLTransactions();
         TransactionDto GetTransaction(int transactionId);
