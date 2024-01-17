@@ -55,10 +55,7 @@ namespace Wallet.Infrastructure.Migrations
             modelBuilder.Entity("wallet.Domain.Entities.Label", b =>
                 {
                     b.Property<int>("LabelId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LabelId"));
 
                     b.Property<float>("CurrentAmount")
                         .HasMaxLength(100)
@@ -86,10 +83,7 @@ namespace Wallet.Infrastructure.Migrations
             modelBuilder.Entity("wallet.Domain.Entities.Notification", b =>
                 {
                     b.Property<int>("NotifId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotifId"));
 
                     b.Property<string>("NotifMessage")
                         .IsRequired()
@@ -101,10 +95,15 @@ namespace Wallet.Infrastructure.Migrations
                     b.Property<int>("NotificationType")
                         .HasColumnType("int");
 
+                    b.Property<int>("TransactionId1")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("NotifId");
+
+                    b.HasIndex("TransactionId1");
 
                     b.HasIndex("UserId");
 
@@ -122,9 +121,6 @@ namespace Wallet.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"));
 
                     b.Property<int>("LabelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NotificationId")
                         .HasColumnType("int");
 
                     b.Property<int>("TransactionStatus")
@@ -148,9 +144,6 @@ namespace Wallet.Infrastructure.Migrations
                     b.HasKey("TransactionId");
 
                     b.HasIndex("LabelId");
-
-                    b.HasIndex("NotificationId")
-                        .IsUnique();
 
                     b.HasIndex("WalletId");
 
@@ -190,10 +183,7 @@ namespace Wallet.Infrastructure.Migrations
             modelBuilder.Entity("wallet.Domain.Entities.Voucher", b =>
                 {
                     b.Property<int>("VoucherId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VoucherId"));
 
                     b.Property<int>("DestVoucherId")
                         .HasColumnType("int");
@@ -294,9 +284,17 @@ namespace Wallet.Infrastructure.Migrations
 
             modelBuilder.Entity("wallet.Domain.Entities.Notification", b =>
                 {
+                    b.HasOne("wallet.Domain.Entities.Transaction", "Transaction")
+                        .WithMany()
+                        .HasForeignKey("TransactionId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("wallet.Domain.Entities.User", null)
                         .WithMany("Notifications")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Transaction");
                 });
 
             modelBuilder.Entity("wallet.Domain.Entities.Transaction", b =>
@@ -307,10 +305,6 @@ namespace Wallet.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("wallet.Domain.Entities.Notification", "Notification")
-                        .WithOne("Transaction")
-                        .HasForeignKey("wallet.Domain.Entities.Transaction", "NotificationId");
-
                     b.HasOne("wallet.Domain.Entities.WalletE", "Wallet")
                         .WithMany("Transactions")
                         .HasForeignKey("WalletId")
@@ -318,8 +312,6 @@ namespace Wallet.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Label");
-
-                    b.Navigation("Notification");
 
                     b.Navigation("Wallet");
                 });
@@ -392,12 +384,6 @@ namespace Wallet.Infrastructure.Migrations
             modelBuilder.Entity("wallet.Domain.Entities.Label", b =>
                 {
                     b.Navigation("Transactions");
-                });
-
-            modelBuilder.Entity("wallet.Domain.Entities.Notification", b =>
-                {
-                    b.Navigation("Transaction")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("wallet.Domain.Entities.User", b =>

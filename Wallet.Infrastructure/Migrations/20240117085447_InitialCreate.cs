@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Wallet.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Ini : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,27 +48,6 @@ namespace Wallet.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Notification",
-                columns: table => new
-                {
-                    NotifId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NotificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NotificationType = table.Column<int>(type: "int", nullable: false),
-                    NotifMessage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Notification", x => x.NotifId);
-                    table.ForeignKey(
-                        name: "FK_Notification_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "UserId");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "WalletE",
                 columns: table => new
                 {
@@ -87,6 +66,106 @@ namespace Wallet.Infrastructure.Migrations
                         principalTable: "User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Label",
+                columns: table => new
+                {
+                    LabelId = table.Column<int>(type: "int", nullable: false),
+                    LabelName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    DesiredAmount = table.Column<float>(type: "real", maxLength: 100, nullable: false),
+                    CurrentAmount = table.Column<float>(type: "real", maxLength: 100, nullable: false),
+                    WalletId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Label", x => x.LabelId);
+                    table.ForeignKey(
+                        name: "FK_Label_WalletE_WalletId",
+                        column: x => x.WalletId,
+                        principalTable: "WalletE",
+                        principalColumn: "WalletId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "voucher",
+                columns: table => new
+                {
+                    VoucherId = table.Column<int>(type: "int", nullable: false),
+                    DestVoucherId = table.Column<int>(type: "int", nullable: false),
+                    VoucherDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    VoucherStatus = table.Column<int>(type: "int", nullable: false),
+                    VoucherAmount = table.Column<float>(type: "real", nullable: false, defaultValue: 0f),
+                    WalletId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_voucher", x => x.VoucherId);
+                    table.ForeignKey(
+                        name: "FK_voucher_WalletE_WalletId",
+                        column: x => x.WalletId,
+                        principalTable: "WalletE",
+                        principalColumn: "WalletId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Transaction",
+                columns: table => new
+                {
+                    TransactionId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TransactionType = table.Column<int>(type: "int", maxLength: 100, nullable: false),
+                    TransactionStatus = table.Column<int>(type: "int", maxLength: 100, nullable: false),
+                    TransactionTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TransactionValue = table.Column<float>(type: "real", maxLength: 100, nullable: false),
+                    WalletId = table.Column<int>(type: "int", nullable: false),
+                    LabelId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transaction", x => x.TransactionId);
+                    table.ForeignKey(
+                        name: "FK_Transaction_Label_LabelId",
+                        column: x => x.LabelId,
+                        principalTable: "Label",
+                        principalColumn: "LabelId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transaction_WalletE_WalletId",
+                        column: x => x.WalletId,
+                        principalTable: "WalletE",
+                        principalColumn: "WalletId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Notification",
+                columns: table => new
+                {
+                    NotifId = table.Column<int>(type: "int", nullable: false),
+                    NotificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    NotificationType = table.Column<int>(type: "int", nullable: false),
+                    NotifMessage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TransactionId1 = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notification", x => x.NotifId);
+                    table.ForeignKey(
+                        name: "FK_Notification_Transaction_TransactionId1",
+                        column: x => x.TransactionId1,
+                        principalTable: "Transaction",
+                        principalColumn: "TransactionId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Notification_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -143,91 +222,15 @@ namespace Wallet.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Label",
-                columns: table => new
-                {
-                    LabelId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    LabelName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    DesiredAmount = table.Column<float>(type: "real", maxLength: 100, nullable: false),
-                    CurrentAmount = table.Column<float>(type: "real", maxLength: 100, nullable: false),
-                    WalletId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Label", x => x.LabelId);
-                    table.ForeignKey(
-                        name: "FK_Label_WalletE_WalletId",
-                        column: x => x.WalletId,
-                        principalTable: "WalletE",
-                        principalColumn: "WalletId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "voucher",
-                columns: table => new
-                {
-                    VoucherId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DestVoucherId = table.Column<int>(type: "int", nullable: false),
-                    VoucherDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    VoucherStatus = table.Column<int>(type: "int", nullable: false),
-                    VoucherAmount = table.Column<float>(type: "real", nullable: false, defaultValue: 0f),
-                    WalletId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_voucher", x => x.VoucherId);
-                    table.ForeignKey(
-                        name: "FK_voucher_WalletE_WalletId",
-                        column: x => x.WalletId,
-                        principalTable: "WalletE",
-                        principalColumn: "WalletId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Transaction",
-                columns: table => new
-                {
-                    TransactionId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TransactionType = table.Column<int>(type: "int", maxLength: 100, nullable: false),
-                    TransactionStatus = table.Column<int>(type: "int", maxLength: 100, nullable: false),
-                    TransactionTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TransactionValue = table.Column<float>(type: "real", maxLength: 100, nullable: false),
-                    WalletId = table.Column<int>(type: "int", nullable: false),
-                    LabelId = table.Column<int>(type: "int", nullable: false),
-                    NotificationId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transaction", x => x.TransactionId);
-                    table.ForeignKey(
-                        name: "FK_Transaction_Label_LabelId",
-                        column: x => x.LabelId,
-                        principalTable: "Label",
-                        principalColumn: "LabelId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Transaction_Notification_NotificationId",
-                        column: x => x.NotificationId,
-                        principalTable: "Notification",
-                        principalColumn: "NotifId");
-                    table.ForeignKey(
-                        name: "FK_Transaction_WalletE_WalletId",
-                        column: x => x.WalletId,
-                        principalTable: "WalletE",
-                        principalColumn: "WalletId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Label_WalletId",
                 table: "Label",
                 column: "WalletId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Notification_TransactionId1",
+                table: "Notification",
+                column: "TransactionId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Notification_UserId",
@@ -238,12 +241,6 @@ namespace Wallet.Infrastructure.Migrations
                 name: "IX_Transaction_LabelId",
                 table: "Transaction",
                 column: "LabelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Transaction_NotificationId",
-                table: "Transaction",
-                column: "NotificationId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transaction_WalletId",
@@ -279,16 +276,16 @@ namespace Wallet.Infrastructure.Migrations
                 name: "SMSNotification");
 
             migrationBuilder.DropTable(
-                name: "Transaction");
-
-            migrationBuilder.DropTable(
                 name: "voucher");
 
             migrationBuilder.DropTable(
-                name: "Label");
+                name: "Notification");
 
             migrationBuilder.DropTable(
-                name: "Notification");
+                name: "Transaction");
+
+            migrationBuilder.DropTable(
+                name: "Label");
 
             migrationBuilder.DropTable(
                 name: "WalletE");

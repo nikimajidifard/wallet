@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace wallet.Domain.Entities
 {
     public class Notification
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int NotifId { get; set; }
         public DateTime NotificationDate { get; set; }
         public NotificationType NotificationType{ get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace wallet.Domain.Entities
 {
     public class Voucher
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int VoucherId { get; set; }
         public int DestVoucherId { get; set; }
         public DateTime VoucherDate { get; set; }

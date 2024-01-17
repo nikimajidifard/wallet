@@ -12,6 +12,7 @@ using wallet.Domain.Entities;
 using Wallet.Application.Services;
 using System.ComponentModel.Design;
 
+
 namespace Wallet.Application.Services
 {
     public class LabelServices : ILabel
@@ -25,11 +26,10 @@ namespace Wallet.Application.Services
         }
         public string CreateLabel(LabelDto labeldto, int walledId)
         {
-            var label = _mapper.Map<wallet.Domain.Entities.Label>(labeldto);
-            var wallet = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == w.WalletId);
+            var wallet = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == walledId);
             if (wallet == null) { return "wallet not found"; }
-
-            if ((label.DesiredAmount < wallet.WalletBalance) && (label.CurrentAmount < wallet.WalletBalance))
+            var label = _mapper.Map<wallet.Domain.Entities.Label>(labeldto);
+            if ((label.DesiredAmount < wallet.WalletBalance) || (label.CurrentAmount < wallet.WalletBalance))
             {
                 label.WalletId = walledId;
                 label.Wallet = wallet; ;
@@ -38,8 +38,10 @@ namespace Wallet.Application.Services
                 return "label was created";
             }
             return "the value of label more than wallet balance";
-            
+
         }
+
+
         
 
         public List<LabelDto> GetAllLabels()
@@ -52,7 +54,7 @@ namespace Wallet.Application.Services
 
         public LabelDto GetLabel(int labelId)
         {
-            var label = _dbContext.Labels.FirstOrDefault(l => l.LabelId == l.LabelId);
+            var label = _dbContext.Labels.FirstOrDefault(l => l.LabelId == labelId);
             if (label == null)
             {
                 throw new LabelNotFoundException("label with ID {labelId} not found", labelId);

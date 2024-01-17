@@ -249,7 +249,7 @@ namespace Wallet.Api.Controllers
 
         //  END OF VOUCHER METHODS 
         // ///////////////////////////////Notification/////////////////////////////////////////////////
-        [HttpPost]
+        /*[HttpPost]
         [Route("Notify")]
         public ActionResult<string> Notify(NotificationDto Notif, int transactionId, string message)
         {
@@ -271,7 +271,7 @@ namespace Wallet.Api.Controllers
         {
             var notifications = NotificationService.GetAllNotifications();
             return Ok(notifications);
-        }
+        }*/
         // END OF NOTIFICAIION METHOd
 
         // ///////////////////////////////////transaction/////////////////////////////////////////////////////

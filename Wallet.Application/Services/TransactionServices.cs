@@ -10,6 +10,7 @@ using Wallet.Infrastructure.Data;
 using wallet.Domain.Enums;
 using wallet.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Wallet.Application.Services
 {
@@ -29,42 +30,51 @@ namespace Wallet.Application.Services
             var label = _dbContext.Labels.FirstOrDefault(l => l.WalletId == walletId && l.LabelName == labelname);
             if (wallet == null)
                 return "wallet not found.";
-            bool flag = false;
-          
-            if (label == null) { flag = true ;}
 
-            if(wallet.Labels.Contains(label))
-            { 
-                var newvalue = label.CurrentAmount + amount;
-                if (newvalue <= label.DesiredAmount || flag == true )
+            //bool flag = false;
+            //if (label == null) { flag = true; }
+
+
+            if (wallet.Labels.Contains(label) || label == null)
+            {
+                if (wallet.IsBlocked == false)
                 {
-                    label.CurrentAmount = newvalue;
-                    if (wallet.IsBlocked == false)
+                    var transaction = new Transaction
                     {
-                        var transaction = new Transaction
-                        {
-                            TransactionType = TransactionType.deposit,
-                            TransactionStatus = Status.successful,
-                            TransactionTime = DateTime.Now,
-                            TransactionValue = amount,
-                            Wallet = wallet
-                        };
-
+                        TransactionType = TransactionType.deposit,
+                        TransactionStatus = Status.successful,
+                        TransactionTime = DateTime.Now,
+                        TransactionValue = amount,
+                        Wallet = wallet
+                    };
+                    if (label == null)
+                    {
                         wallet.WalletBalance += amount;
                         _dbContext.Transactions.Add(transaction);
                         _dbContext.SaveChanges();
                         return "Deposit successful.";
 
                     }
+                    else
+                    {
+                        var newvalue = label.CurrentAmount + amount;
+                        if (newvalue <= label.DesiredAmount)
+                        {
+                            label.CurrentAmount = newvalue;
+                            wallet.WalletBalance += amount;
+                            _dbContext.Transactions.Add(transaction);
+                            _dbContext.SaveChanges();
+                            return "Deposit successful.";
+                        }
+                        else { return "the amount is more than label desiredamount"; };
 
-                    return "blocked wallet";
+                    }
 
                 }
-                return "the amount is more than label desiredamount";
+                return "blocked wallet!";
             }
-   
             return "the wallet does not contain this label";
- 
+
         }
 
         public List<TransactionDto> GetALLTransactions()
@@ -136,49 +146,59 @@ namespace Wallet.Application.Services
             if (wallet == null)
                 return "wallet not found.";
 
+           
 
-            bool flag = false;
+            if (amount > wallet.WalletBalance) { return "withdraw amount more than wallet balance"; }
 
-            if (label == null) { flag = true; }
-
-            if (wallet.Labels.Contains(label))
+            
+            else if (wallet.Labels.Contains(label) || label == null)
             {
-                var newvalue = label.CurrentAmount - amount;
-                if (newvalue >= 0 || flag == true)
+                if (wallet.IsBlocked == false)
                 {
-                    label.CurrentAmount = newvalue;
-                    if (wallet.IsBlocked == false)
+                    var transaction = new Transaction
                     {
-                        var transaction = new Transaction
-                        {
-                            TransactionType = TransactionType.deposit,
-                            TransactionStatus = Status.successful,
-                            TransactionTime = DateTime.Now,
-                            TransactionValue = amount,
-                            Wallet = wallet
-                        };
-
+                        TransactionType = TransactionType.deposit,
+                        TransactionStatus = Status.successful,
+                        TransactionTime = DateTime.Now,
+                        TransactionValue = amount,
+                        Wallet = wallet
+                    };
+                    if (label == null)
+                    {
                         wallet.WalletBalance -= amount;
                         _dbContext.Transactions.Add(transaction);
                         _dbContext.SaveChanges();
                         return "Deposit successful.";
 
                     }
+                    else
+                    {
+                        var newvalue = label.CurrentAmount - amount;
+                        if (newvalue >= 0)
+                        {
+                            label.CurrentAmount = newvalue;
+                            wallet.WalletBalance -= amount;
+                            _dbContext.Transactions.Add(transaction);
+                            _dbContext.SaveChanges();
+                            return "Deposit successful.";
+                        }
+                        else { return "not have sufficient label amount"; };
 
-                    return "blocked wallet";
+                    }
 
                 }
-                return "the amount is more than label desiredamount";
+                return "blocked wallet!";
             }
-
             return "the wallet does not contain this label";
 
         }
     }
-    }
+}
 
     public class TransactionNotFoundException : Exception
     {
         public TransactionNotFoundException(string message, int id) : base(message) { }
     }
+
+
 

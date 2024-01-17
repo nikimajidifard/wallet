@@ -11,6 +11,8 @@ namespace wallet.Domain.Entities
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         /*[Key] */
+
+
         public int CompanyId { get; set; }
         public string CompanyName { get; set; }
         public string CompanyLocation { get; set; }
