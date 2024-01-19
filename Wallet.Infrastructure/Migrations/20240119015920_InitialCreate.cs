@@ -122,7 +122,7 @@ namespace Wallet.Infrastructure.Migrations
                     TransactionTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TransactionValue = table.Column<float>(type: "real", maxLength: 100, nullable: false),
                     WalletId = table.Column<int>(type: "int", nullable: false),
-                    LabelId = table.Column<int>(type: "int", nullable: false)
+                    LabelId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -131,8 +131,7 @@ namespace Wallet.Infrastructure.Migrations
                         name: "FK_Transaction_Label_LabelId",
                         column: x => x.LabelId,
                         principalTable: "Label",
-                        principalColumn: "LabelId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "LabelId");
                     table.ForeignKey(
                         name: "FK_Transaction_WalletE_WalletId",
                         column: x => x.WalletId,

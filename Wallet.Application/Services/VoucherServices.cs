@@ -23,17 +23,29 @@ namespace Wallet.Application.Services
             _mapper = mapper;
         }
 
-        public string CreateVoucher(VoucherDto voucherdto, int voucherDest, int walletid)
+        public string CreateVoucher(VoucherDto voucherdto, int walletId, int walletDestId)
         {
-            var wallet = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == walletid);
+            var wallet = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == walletId);
             if (wallet == null) { return "wallet not found"; }
-            var voucher = _mapper.Map<Voucher>(voucherdto);
-            voucher.Wallet = wallet;
-            voucher.WalletId = walletid; // the source wallet which published voucher
-            voucher.DestVoucherId = voucherDest;
-            _dbContext.Add(voucher);
-            _dbContext.SaveChanges();
-            return "voucher was created";
+
+            var walletDest = _dbContext.Wallets.FirstOrDefault(w => w.WalletId == walletDestId);
+            if (walletDest == null) { return "walletdest not found"; }
+
+
+            if(walletDest.IsBlocked == true) { return "target wallet is blocked"; }
+            else if(walletDest.IsBlocked == true) { return "source wallet is blocked"; }
+            else
+            {
+                var voucher = _mapper.Map<Voucher>(voucherdto);
+                voucher.Wallet = wallet;
+                voucher.WalletId = walletid; // the source wallet which published voucher
+                voucher.DestVoucherId = voucherDest;
+                _dbContext.Add(voucher);
+                _dbContext.SaveChanges();
+                return "voucher was created";
+
+            }
+        
         }
         public List<VoucherDto> GetVouchers()
         {

@@ -6,6 +6,7 @@ using Wallet.Infrastructure.Data;
 using Wallet.Application.Mapper;
 using AutoMapper;
 using static Wallet.Application.Mapper.Mapper;
+using Wallet.Application.Services.Search;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,10 @@ builder.Services.AddScoped<IUser, UserServices>();
 builder.Services.AddScoped<IWallet, WalletServices>();
 builder.Services.AddScoped<IVoucher, VoucherServices>();
 builder.Services.AddScoped<ITransaction, TransactionServices>();
+builder.Services.AddScoped<ISearchCompany, CompanySearch>();
+builder.Services.AddScoped<ISearchTransaction, TransactionSearch>();
+builder.Services.AddScoped<ISearchWalletE, WalletSearch>();
+builder.Services.AddScoped<ISearchUser, UserSearch>();
 
 // Add AutoMapper configuration
 builder.Services.AddAutoMapper(typeof(WalletMappingProfile));

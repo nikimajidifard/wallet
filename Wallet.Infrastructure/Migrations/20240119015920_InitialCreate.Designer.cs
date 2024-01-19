@@ -12,7 +12,7 @@ using Wallet.Infrastructure.Data;
 namespace Wallet.Infrastructure.Migrations
 {
     [DbContext(typeof(WalletDBContext))]
-    [Migration("20240117085447_InitialCreate")]
+    [Migration("20240119015920_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -123,7 +123,7 @@ namespace Wallet.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"));
 
-                    b.Property<int>("LabelId")
+                    b.Property<int?>("LabelId")
                         .HasColumnType("int");
 
                     b.Property<int>("TransactionStatus")
@@ -304,9 +304,7 @@ namespace Wallet.Infrastructure.Migrations
                 {
                     b.HasOne("wallet.Domain.Entities.Label", "Label")
                         .WithMany("Transactions")
-                        .HasForeignKey("LabelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LabelId");
 
                     b.HasOne("wallet.Domain.Entities.WalletE", "Wallet")
                         .WithMany("Transactions")

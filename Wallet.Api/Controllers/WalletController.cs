@@ -3,6 +3,9 @@ using Wallet.Application.Services;
 using Wallet.Application.Contracts;
 using wallet.Domain.Entities;
 using Wallet.Application.DTOs;
+using AutoMapper.Internal.Mappers;
+using System.ComponentModel.Design;
+using wallet.Domain.Enums;
 
 namespace Wallet.Api.Controllers
 {
@@ -18,10 +21,16 @@ namespace Wallet.Api.Controllers
         private readonly ILabel LabelService;
         private readonly INotification NotificationService;
         private readonly ITransaction TransactionService;
+        private readonly ISearchUser SearchUser;
+        private readonly ISearchCompany SearchCompany;
+        private readonly ISearchWalletE SearchWallet;
+        private readonly ISearchTransaction SearchTransaction;
+        private readonly ISearchEngine SearchEngine;
 
 
 
-        public WalletController(IWallet WalletService, IUser UserService, ICompany CompanyService, IVoucher VoucherService, ILabel LabelService, INotification NotificationService, ITransaction TransactionService)
+        public WalletController(IWallet WalletService, IUser UserService, ICompany CompanyService, IVoucher VoucherService, ILabel LabelService, INotification NotificationService, ITransaction TransactionService, ISearchCompany SearchCompany, ISearchTransaction SearchTransaction, ISearchUser SearchUser, ISearchWalletE SearchWallet
+            )
         {
             this.WalletService = WalletService;
             this.UserService = UserService;
@@ -30,6 +39,10 @@ namespace Wallet.Api.Controllers
             this.LabelService = LabelService;
             this.NotificationService = NotificationService;
             this.TransactionService = TransactionService;
+            this.SearchCompany = SearchCompany;
+            this.SearchTransaction = SearchTransaction;
+            this.SearchUser = SearchUser;
+            this.SearchWallet = SearchWallet;
         }
 
         //WALLET
@@ -315,5 +328,167 @@ namespace Wallet.Api.Controllers
         }
 
         // END OF THE TRANSACTION METHODS
+        /////////////// /////////////////Search company ///////////////////////////////////////////////
+        [HttpGet]
+        [Route("CompanybyNumber")]
+        public ActionResult<CompanyDto> GetCompanybyCompanyNo(string CompanyNo)
+        {
+            var companies = SearchCompany.GetCompanybyCompanyNo(CompanyNo);
+            return Ok(companies);
+        }
+
+        [HttpGet]
+        [Route("CompanybyId")]
+        public ActionResult<CompanyDto> GetCompanybyId(int CompanyId)
+        {
+            var companies = SearchCompany.GetCompanybyId(CompanyId);
+            return Ok(companies);
+        }
+        [HttpGet]
+        [Route("CompanybyLocation")]
+        public ActionResult<CompanyDto> GetCompanybyLocation(string CompanyLocation)
+        {
+            var companies = SearchCompany.GetCompanybyLocation(CompanyLocation);
+            return Ok(companies);
+        }
+        [HttpGet]
+        [Route("CompanybyRate")]
+        public ActionResult<CompanyDto> GetCompanybyRate(float CompanyRate)
+        {
+            var companies = SearchCompany.GetCompanybyRate(CompanyRate);
+            return Ok(companies);
+        }
+        [HttpGet]
+        [Route("CompanybyName")]
+        public ActionResult<CompanyDto> GetCompanybyName(string CompanyName)
+        {
+            var companies = SearchCompany.GetCompanybyName(CompanyName);
+            return Ok(companies);
+        }
+        // END OF COMPANY METHODS
+        //////////////////////////////WALLET SEARCH////////////////////////////////////////////////
+        [HttpGet]
+        [Route("WalletbyId")]
+        public ActionResult<WalletEDto> GetWalletbyId(int WalletID)
+        {
+            var wallet = SearchWallet.GetWalletbyId(WalletID);
+            return Ok(wallet);
+        }
+
+        [HttpGet]
+        [Route("WalletbyUserId")]
+        public ActionResult<List<WalletEDto>> GetWalletbyUserId(int UserId)
+        {
+            var wallets = SearchWallet.GetWalletbyUserId(UserId);
+            return Ok(wallets);
+        }
+        [HttpGet]
+        [Route("WalletbyBalance")]
+        public ActionResult<List<WalletEDto>> GetWalletbyBalance(float WalletBalance)
+        {
+            var wallets = SearchWallet.GetWalletbyBalance(WalletBalance);
+            return Ok(wallets);
+        }
+        [HttpGet]
+        [Route("WalletbyState")]
+        public ActionResult<List<WalletEDto>> GetWalletbyState(bool State)
+        {
+            var wallets = SearchWallet.GetWalletbyState(State);
+            return Ok(wallets);
+        }
+        //    END OF WALLET SEARCH METHOS
+        /////////////////////////////////Search user//////////////////////////////////////////////////
+        [HttpGet]
+        [Route("UserbyId")]
+        public ActionResult<UserDto> GetUserbyId(int userID)
+        {
+            var user = SearchUser.GetUserbyId(userID);
+            return Ok(user);
+        }
+
+        [HttpGet]
+        [Route("UserbyUsername")]
+        public ActionResult<UserDto> GetUserbyUsername(string userName)
+        {
+            var user = SearchUser.GetUserbyUsername(userName);
+            return Ok(user);
+        }
+        [HttpGet]
+        [Route("UserbyPhone")]
+        public ActionResult<UserDto> GetUserbyPhone(string userPhone)
+        {
+            var user = SearchUser.GetUserbyPhone(userPhone);
+            return Ok(user);
+        }
+        [HttpGet]
+        [Route("UserbyCompany")]
+        public ActionResult<List<UserDto>> GetUsersbyCompany(int companyID)
+        {
+            var users = SearchUser.GetUsersbyCompany(companyID);
+            return Ok(users);
+        }
+        [HttpGet]
+        [Route("UserbyWallet")]
+        public ActionResult<UserDto> GetUserbywallet(int walletId)
+        {
+            var users = SearchUser.GetUsersbyCompany(walletId);
+            return Ok(users);
+        }
+        [HttpGet]
+        [Route("UserbyRole")]
+        public ActionResult<UserDto> GetUserbyRole(string userRole)
+        {
+            var users = SearchUser.GetUserbyRole(userRole);
+            return Ok(users);
+        }
+        //  END OF USER SEARCH METHODS 
+        //////////////////////////////// TRANSACTION SEARCH METHODS ////////////////////////////////////
+        
+        [HttpGet]
+        [Route("TransactionbyType")]
+        public ActionResult<TransactionDto> GetTransactionbyType(TransactionType TransactionType)
+        {
+            var transactions = SearchTransaction.GetTransactionbyType(TransactionType);
+            return Ok(transactions);
+        }
+        [HttpGet]
+        [Route("TransactionbyTime")]
+        public ActionResult<TransactionDto> GetTransactionbyTime(DateTime TransactionTime)
+        {
+            var transactions = SearchTransaction.GetTransactionbyTime(TransactionTime);
+            return Ok(transactions);
+        }
+        [HttpGet]
+        [Route("TransactionbyValue")]
+        public ActionResult<List<TransactionDto>> GetTransactionbyValue(float TransactionValue)
+        {
+            var transactions = SearchTransaction.GetTransactionbyValue(TransactionValue);
+            return Ok(transactions);
+        }
+        [HttpGet]
+        [Route("TransactionbyWallet")]
+        public ActionResult<List<TransactionDto>> GetTransactionbyWallet(int WalletId)
+        {
+            var transactions = SearchTransaction.GetTransactionbyValue(WalletId);
+            return Ok(transactions);
+        }
+
+        [HttpGet]
+        [Route("TransactionbyStatus")]
+        public ActionResult<List<TransactionDto>> GetTransactionbyWalletStatus(Status status)
+        {
+            var transactions = SearchTransaction.GetTransactionbyWalletStatus(status);
+            return Ok(transactions);
+        }
+        // END OF SEARCH TRANSACTION METHODS
+        //////////////   
+
+
+
+
+
+
+
+
     }
 }

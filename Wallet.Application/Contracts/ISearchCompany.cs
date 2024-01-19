@@ -8,7 +8,7 @@ using Wallet.Application.DTOs;
 
 namespace Wallet.Application.Contracts
 {
-    internal interface ISearchCompany
+    public interface ISearchCompany
     {
         CompanyDto GetCompanybyId(int CompanyID);
         List<CompanyDto> GetCompanybyName(string CompanyName);

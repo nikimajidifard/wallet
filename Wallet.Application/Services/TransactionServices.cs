@@ -45,7 +45,9 @@ namespace Wallet.Application.Services
                         TransactionStatus = Status.successful,
                         TransactionTime = DateTime.Now,
                         TransactionValue = amount,
-                        Wallet = wallet
+                        Wallet = wallet,
+                        Label = label
+                        
                     };
                     if (label == null)
                     {
@@ -161,7 +163,8 @@ namespace Wallet.Application.Services
                         TransactionStatus = Status.successful,
                         TransactionTime = DateTime.Now,
                         TransactionValue = amount,
-                        Wallet = wallet
+                        Wallet = wallet,
+                        Label = label
                     };
                     if (label == null)
                     {

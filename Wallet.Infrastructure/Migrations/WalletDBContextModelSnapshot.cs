@@ -120,7 +120,7 @@ namespace Wallet.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"));
 
-                    b.Property<int>("LabelId")
+                    b.Property<int?>("LabelId")
                         .HasColumnType("int");
 
                     b.Property<int>("TransactionStatus")
@@ -301,9 +301,7 @@ namespace Wallet.Infrastructure.Migrations
                 {
                     b.HasOne("wallet.Domain.Entities.Label", "Label")
                         .WithMany("Transactions")
-                        .HasForeignKey("LabelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LabelId");
 
                     b.HasOne("wallet.Domain.Entities.WalletE", "Wallet")
                         .WithMany("Transactions")
