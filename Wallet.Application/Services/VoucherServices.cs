@@ -38,8 +38,8 @@ namespace Wallet.Application.Services
             {
                 var voucher = _mapper.Map<Voucher>(voucherdto);
                 voucher.Wallet = wallet;
-                voucher.WalletId = walletid; // the source wallet which published voucher
-                voucher.DestVoucherId = voucherDest;
+                voucher.WalletId = walletId; // the source wallet which published voucher
+                voucher.DestVoucherId = walletDestId;
                 _dbContext.Add(voucher);
                 _dbContext.SaveChanges();
                 return "voucher was created";

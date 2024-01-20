@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using wallet.Domain;
+using wallet.Domain.Entities;
 using wallet.Domain.Enums;
 
 namespace wallet.Domain.Entities

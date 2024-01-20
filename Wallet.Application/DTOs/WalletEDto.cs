@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wallet.Application.Enums;
+using wallet.Domain.Enums;
 
 namespace Wallet.Application.DTOs
 {

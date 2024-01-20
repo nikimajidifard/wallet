@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
-using Wallet.Application.Enums;
+using wallet.Domain.Enums;
 
 namespace Wallet.Application.DTOs
 {

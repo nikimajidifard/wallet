@@ -31,8 +31,6 @@ namespace wallet.Domain.Enums
         move,
         withdraw,
         deposit
-
-        
     }
 
 }

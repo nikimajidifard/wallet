@@ -58,7 +58,7 @@ namespace Wallet.Application.Services.Search
             if (wallet == null)
                 return null;
 
-            var walletDto = _mapper.Map<list<WalletEDto>>(wallet);
+            var walletDto = _mapper.Map<List<WalletEDto>>(wallet);
 
             return walletDto;
         }

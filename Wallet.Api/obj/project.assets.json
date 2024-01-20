@@ -1099,7 +1099,6 @@
           "AutoMapper": "12.0.1",
           "AutoMapper.Collection": "9.0.0",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "Wallet.Domain": "1.0.0",
           "Wallet.Infrastructure": "1.0.0"
         },
         "compile": {
@@ -2973,6 +2972,7 @@
     "net6.0": [
       "Swashbuckle.AspNetCore >= 6.2.3",
       "Wallet.Application >= 1.0.0",
+      "Wallet.Domain >= 1.0.0",
       "Wallet.Infrastructure >= 1.0.0"
     ]
   },
@@ -3011,6 +3011,9 @@
           "projectReferences": {
             "E:\\wallet\\Wallet.Application\\Wallet.Application.csproj": {
               "projectPath": "E:\\wallet\\Wallet.Application\\Wallet.Application.csproj"
+            },
+            "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj": {
+              "projectPath": "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj"
             },
             "E:\\wallet\\Wallet.Infrastructure\\Wallet.Infrastructure.csproj": {
               "projectPath": "E:\\wallet\\Wallet.Infrastructure\\Wallet.Infrastructure.csproj"

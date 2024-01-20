@@ -32,9 +32,6 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj": {
-                "projectPath": "E:\\wallet\\Wallet.Domain\\Wallet.Domain.csproj"
-              },
               "E:\\wallet\\Wallet.Infrastructure\\Wallet.Infrastructure.csproj": {
                 "projectPath": "E:\\wallet\\Wallet.Infrastructure\\Wallet.Infrastructure.csproj"
               }

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Wallet.Application.Contracts;
 using Wallet.Application.DTOs;
-using wallet.Domain.Enums;
 using Wallet.Infrastructure.Data;
 using AutoMapper;
 using System.Transactions;

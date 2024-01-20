@@ -5,6 +5,7 @@ using wallet.Domain.Entities;
 using Wallet.Application.DTOs;
 using AutoMapper.Internal.Mappers;
 using System.ComponentModel.Design;
+using wallet.Domain.Entities;
 using wallet.Domain.Enums;
 
 namespace Wallet.Api.Controllers
@@ -307,14 +308,14 @@ namespace Wallet.Api.Controllers
 
         [HttpPost]
         [Route("DepositTransaction")]
-        public ActionResult<string> Deposit(int walletId, float amount, string labelname)
+        public ActionResult<string> Deposit(int walletId, float amount, string? labelname)
         {
             var response = TransactionService.Deposit(walletId, amount,labelname);
             return Ok(response);
         }
         [HttpPost]
         [Route("WithDrawTransaction")]
-        public ActionResult<string> Withdraw(int walletId, float amount, string labelname)
+        public ActionResult<string> Withdraw(int walletId, float amount, string? labelname)
         {
             var response = TransactionService.Withdraw(walletId, amount,labelname);
             return Ok(response);
@@ -443,7 +444,13 @@ namespace Wallet.Api.Controllers
         }
         //  END OF USER SEARCH METHODS 
         //////////////////////////////// TRANSACTION SEARCH METHODS ////////////////////////////////////
-        
+        [HttpGet]
+        [Route("TransactionbyId")]
+        public ActionResult<TransactionDto> GetTransactionbyId(int TransactionId)
+        {
+            var transaction = SearchTransaction.GetTransactionbyId(TransactionId);
+            return Ok(transaction);
+        }
         [HttpGet]
         [Route("TransactionbyType")]
         public ActionResult<TransactionDto> GetTransactionbyType(TransactionType TransactionType)
@@ -472,7 +479,7 @@ namespace Wallet.Api.Controllers
             var transactions = SearchTransaction.GetTransactionbyValue(WalletId);
             return Ok(transactions);
         }
-
+        
         [HttpGet]
         [Route("TransactionbyStatus")]
         public ActionResult<List<TransactionDto>> GetTransactionbyWalletStatus(Status status)

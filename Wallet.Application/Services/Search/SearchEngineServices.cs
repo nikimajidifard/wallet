@@ -12,7 +12,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Wallet.Application.Contracts;
 using Wallet.Application.DTOs;
-using wallet.Domain.Enums;
 using Wallet.Application.Contracts;
 using Wallet.Infrastructure.Data;
 using AutoMapper;
@@ -28,10 +27,10 @@ namespace Wallet.Application.Services.Search
     {
         private readonly WalletDBContext _dbContext;
         private readonly IMapper _mapper;
-        private CompanySearch companySearchengine;
-        private UserSearch UserSearchengine;
-        private TransactionSearch TransactionSearchengine;
-        private WalletSearch walletSearchengine;
+        private readonly CompanySearch companySearchengine;
+        private readonly UserSearch UserSearchengine;
+        private readonly TransactionSearch TransactionSearchengine;
+        private readonly WalletSearch walletSearchengine;
 
         public SearchEngineServices(WalletDBContext dbContext, IMapper mapper)
         {

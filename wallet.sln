@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "presentation", "presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.Api", "Wallet.Api\Wallet.Api.csproj", "{4D74FB3F-A2C9-430C-9E66-4D410FC90EC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.Domain", "Wallet.Domain\Wallet.Domain.csproj", "{928340E8-71DB-4922-8D1E-523683F7FED3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.Domain", "Wallet.Domain\Wallet.Domain.csproj", "{928340E8-71DB-4922-8D1E-523683F7FED3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
