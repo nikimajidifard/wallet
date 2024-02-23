@@ -8,13 +8,13 @@ Users can create multiple wallets for different spending categories, enabling tr
 management.
 List of features:
 1. CRUD on
- Merchants
- Users
- Wallets
+ Merchants
+, Users
+and Wallets
 2. Do transactions
- Deposit
- Withdraw
- Move
+ Deposit
+, Withdraw
+and Move
 All constraints, such as checking the account's balance, must be passed before the transactions
 above are executed.
 3. Search and filter through transactions’ attributes.
@@ -22,5 +22,6 @@ above are executed.
 Save money based on categorized targets and limit the users’ expenses in order to track them
 for better budgeting.
 5. Scheduling notifications for transactions
+   
 UML Class Diagram
 ![UML](https://github.com/nikimajidifard/wallet/assets/56204470/aeb494e7-95b6-46c8-a334-be8fef056844)
