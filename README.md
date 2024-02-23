@@ -22,6 +22,7 @@ above are executed.
 Save money based on categorized targets and limit the users’ expenses in order to track them
 for better budgeting.
 5. Scheduling notifications for transactions
+
    
-UML Class Diagram
+UML Class Diagram:
 ![UML](https://github.com/nikimajidifard/wallet/assets/56204470/aeb494e7-95b6-46c8-a334-be8fef056844)
